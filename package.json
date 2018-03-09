@@ -9,8 +9,8 @@
     "start": "sapper start",
     "cy:run": "cypress run",
     "cy:open": "cypress open",
-    "unit": "ava tests",
-    "unit:watch": "ava tests --watch",
+    "unit": "ava",
+    "unit:watch": "ava --watch",
     "test": "run-p --race dev cy:run && ava"
   },
   "dependencies": {
@@ -34,7 +34,7 @@
   },
   "ava": {
     "files": [
-      "modules/*.js"
+      "tests/*.js"
     ],
     "sources": [
       "modules/*.{js}"
