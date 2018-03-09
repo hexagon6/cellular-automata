@@ -1,0 +1,36 @@
+<p>Generic CA of type: {{type}}</p>
+
+<Field
+  x="{{x}}"
+  y="{{y}}"
+  field="{{field}}"
+  states="{{s}}"
+  cx="{{cx}}"
+  cy="{{cy}}"
+></Field>
+
+<script>
+import Field from './Field.html'
+import { field, algorithm } from '../../modules'
+
+const initializer = (_, s) => Math.floor(Math.random() * s),
+export default {
+  data() {
+    const x = 100
+    const y = 100 
+    const s = ['#ff6738', '#18c8ff']
+
+    return {
+      field: field(x, y, s.length, initializer),
+      x,
+      y,
+      s,
+      cx: 10,
+      cy: 10,
+    }
+  },
+  components: {
+    Field,
+  }
+}
+</script>

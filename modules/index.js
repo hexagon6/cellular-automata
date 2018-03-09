@@ -4,6 +4,9 @@ const field = (x, y, s, f) => Array.from({ length: x * y }).map((v, i) => ({
   v: f(i, s),
 }))
 
+const algorithm = () => 0
+
 export {
   field,
+  algorithm,
 }

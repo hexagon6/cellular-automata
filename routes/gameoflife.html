@@ -1,0 +1,24 @@
+<:Head>
+	<title>About</title>
+</:Head>
+
+<Layout page='gameoflife'>
+  <h1>Game of Life</h1>
+  
+  <p>by hexagon6 <img alt='hexagon6' width="100" src='/hexagon6.jpg'></p>
+
+  <p>Here you can play the game</p>
+  <GameofLife></GameofLife>
+</Layout>
+
+<script>
+	import Layout from './_components/Layout.html';
+  import GameofLife from './_components/GameofLife.html';
+
+	export default {
+		components: {
+			Layout,
+      GameofLife,
+		}
+	};
+</script>

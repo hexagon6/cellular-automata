@@ -1,0 +1,26 @@
+<div>x: {{x}}, y: {{y}}, state colors: {{states[0]}} {{states[1]}} cell size: x: {{cx}} y: {{cy}} </div>
+
+<svg width="{{x * cx}}" height="{{y * cy}}">
+  <g>
+    <rect
+      width="{{x * cx}}"
+      height="{{y * cy}}"
+      style={{'fill: ' + states[0]}}
+    />
+{{#each field as f}}
+<rect
+  width={{cx}}
+  height={{cy}}
+  x="{{f.x * cx}}"
+  y="{{f.y * cy}}"
+  style={{'fill: ' + states[f.v]}}
+/>
+{{/each}}
+  </g>
+</svg>
+
+<style>
+  svg {
+    border: 1px solid white;
+  }
+</style>
