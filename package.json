@@ -9,7 +9,9 @@
     "start": "sapper start",
     "cy:run": "cypress run",
     "cy:open": "cypress open",
-    "test": "run-p --race dev cy:run"
+    "unit": "ava tests",
+    "unit:watch": "ava tests --watch",
+    "test": "run-p --race dev cy:run && ava"
   },
   "dependencies": {
     "compression": "^1.7.1",
@@ -22,5 +24,34 @@
     "svelte": "^1.56.0",
     "svelte-loader": "^2.3.3",
     "webpack": "^4.1.0"
-  }
+  },
+  "devDependencies": {
+    "@babel/core": "^7.0.0-beta.40",
+    "@babel/preset-env": "^7.0.0-beta.40",
+    "@babel/register": "^7.0.0-beta.40",
+    "@std/esm": "^0.25.2",
+    "ava": "1.0.0-beta.3"
+  },
+  "ava": {
+    "files": [
+      "modules/*.js"
+    ],
+    "sources": [
+      "modules/*.{js}"
+    ],
+    "require": [
+      "@std/esm",
+      "@babel/register"
+    ],
+    "babel": {
+      "testOptions": {
+        "babelrc": false,
+        "plugins": [],
+        "presets": [
+          "@babel/preset-env"
+        ]
+      }
+    }
+  },
+  "@std/esm": "js"
 }
