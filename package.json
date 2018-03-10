@@ -11,7 +11,7 @@
     "cy:open": "cypress open",
     "unit": "ava",
     "unit:watch": "ava --watch",
-    "test": "run-p --race dev ava"
+    "test": "run-p --race dev unit"
   },
   "dependencies": {
     "compression": "^1.7.1",
