@@ -9,6 +9,8 @@
     "start": "sapper start",
     "cy:run": "cypress run",
     "cy:open": "cypress open",
+    "lint": "prettier **/*.js **/*.json",
+    "lint:fix": "prettier --write **/*.js **/*.json",
     "unit": "ava",
     "unit:watch": "ava --watch",
     "test:dev": "run-p --race dev unit",
@@ -31,7 +33,13 @@
     "@babel/preset-env": "^7.0.0-beta.40",
     "@babel/register": "^7.0.0-beta.40",
     "@std/esm": "^0.25.2",
-    "ava": "1.0.0-beta.3"
+    "ava": "1.0.0-beta.3",
+    "prettier": "1.11.1"
+  },
+  "prettier":  {
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "es5"
   },
   "ava": {
     "files": [
