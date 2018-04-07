@@ -66,6 +66,11 @@ self.addEventListener('fetch', event => {
   event.respondWith(
     caches.open(`offline${timestamp}`).then(async cache => {
       try {
+        if (event.request.cache === 'only-if-cache') {
+          // workaround Chrome devtools bug https://github.com/sveltejs/sapper-template/issues/34
+          event.request.mode = 'same-origin'
+        }
+
         const response = await fetch(event.request)
         cache.put(event.request, response.clone())
         return response
