@@ -1,33 +1,65 @@
-<p>Generic CA of type: {{type}}</p>
-
+<div class="container">
+<span>{{fieldtype}} CA of type: "{{type}}"</span>
 <Field
+  fieldtype="{{fieldtype}}"
   x="{{x}}"
   y="{{y}}"
   field="{{field}}"
-  states="{{s}}"
+  states="{{states}}"
   cx="{{cx}}"
   cy="{{cy}}"
+  size="{{size}}"
 ></Field>
+</div>
 
+<style>
+  .container {
+    border: 1px solid orange;
+    background-color: #5f5f7f;
+    color: white;
+  }
+</style>
 <script>
 import Field from './Field.html'
-import { field, algorithm } from '../../modules'
+import { hexagonal, algorithm, rectangular } from '../../modules'
+
+const fieldGen = type => {
+  const _default = 'rectangular'
+  const generators = {
+    'hexagonal': hexagonal.field,
+    'rectangular': rectangular.field,
+  }
+  return (type in generators) ? generators[type] : generators[_default]
+}
+
+const shapeDimensions = (type, factor) => {
+  const _default = 'rectangular'
+  const shapes = {
+    'hexagonal': {
+      cx: 45 * factor,
+      cy: 26 * factor,
+    },
+    'rectangular': {
+      cx: 40 * factor,
+      cy: 40 * factor,
+    }
+  }
+  return (type in shapes) ? shapes[type] : shapes[_default]
+}
 
 const initializer = (_, s) => Math.floor(Math.random() * s)
 export default {
   data() {
-    const x = 100
-    const y = 100 
-    const s = ['#ff6738', '#18c8ff']
-
     return {
-      field: field(x, y, s.length, initializer),
-      x,
-      y,
-      s,
-      cx: 10,
-      cy: 10,
+      field: {},
+      states: [],
+      size: 1,
     }
+  },
+  computed: {
+    field: (x, y, states, fieldtype) => fieldGen(fieldtype)(x, y, states.length, initializer),
+    cx: (fieldtype, size) => shapeDimensions(fieldtype, size).cx,
+    cy: (fieldtype, size) => shapeDimensions(fieldtype, size).cy
   },
   components: {
     Field,
