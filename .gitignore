@@ -8,3 +8,4 @@ templates/.*
 export
 build
 app/manifest
+.vscode/*
