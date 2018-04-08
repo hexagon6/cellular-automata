@@ -1,0 +1,25 @@
+<ul>
+  {{#each els as [key, value] }}
+    <li>{{key}}: {{value}}</li>
+  {{/each}}
+</ul>
+
+<style>
+
+ul {
+    list-style: none;
+  }
+</style>  
+
+<script>
+  export default {
+    data() {
+      return {
+        els: [],
+      }
+    },
+    computed: {
+      els: elements => Object.entries(elements)
+    }
+  }
+</script>

@@ -1,9 +1,33 @@
-<CA type="GoL"></CA>
+<div class="games">
+  {{#each fieldtypes as f}}
+    {{#each dimensions as [x, y]}}
+      {{#each states as s}}
+      <CA fieldtype={{f}} type="GoL" x={{x}} y={{y}} states={{s}} size="0.5"></CA>
+      {{/each}}
+    {{/each}}
+  {{/each}}
+</div>
+
+<style>
+  div.games {
+    display: flex;
+    align-content: space-between;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+</style>
 
 <script>
 import CA from './CA.html';
 
 export default {
+  data () {
+    return {
+      dimensions: [[16,16]], //[5,6], [6,6], [6,5]],
+      fieldtypes: ['hexagonal', 'rectangular'],
+      states: [['#ff6738', '#18c8ff', '#efaf03', '#60f370'], ['#ffffff', '#efefef']],
+    }
+  },
   components: {
     CA,
   }
