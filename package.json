@@ -40,23 +40,14 @@
     "trailingComma": "es5"
   },
   "ava": {
-    "files": [
-      "tests/*.js"
-    ],
-    "sources": [
-      "modules/*.{js}"
-    ],
-    "require": [
-      "@std/esm",
-      "@babel/register"
-    ],
+    "files": ["tests/*.js", "modules/{**/,}.js"],
+    "sources": ["modules/**"],
+    "require": ["@std/esm", "@babel/register"],
     "babel": {
       "testOptions": {
         "babelrc": false,
         "plugins": [],
-        "presets": [
-          "@babel/preset-env"
-        ]
+        "presets": ["@babel/preset-env"]
       }
     }
   },
