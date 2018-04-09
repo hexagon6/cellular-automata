@@ -10,12 +10,19 @@
       fill="#efefef"
     />
 {{#each field as f, i}}
-      <use
-        x="{{f.x * cx}}" y="{{f.y * cy}}"
-        xlink:href="#hexagon" fill="{{states[f.v]}}" stroke="#efefef" stroke-opacity="0.2" />
-      <!--<text
-        x="{{f.x * cx + 0.2 * cx}}" y="{{f.y * cy + 1.1 * cy}}"
-      >{{i}}[{{f.x}},{{f.y}}]</text> -->
+      <g>
+        <use
+          x="{{(f.y % 2 === 0) ? f.x * 2 * cx :  (f.x + 0.5) * 2 * cx}}"
+          y="{{f.y * cy}}"
+          xlink:href="#hexagon" fill="{{states[f.v]}}" stroke="#efefef" stroke-opacity="0.2" />
+        <!--
+          <text
+          x="{{(f.y % 2 === 0) ? f.x * 2 * cx :  (f.x + 0.5) * 2 * cx}}"
+          y="{{f.y * cy}}"
+          font-size="{{cy}}px"
+        >{{i}}[{{f.x}},{{f.y}}]</text>
+        -->
+      </g>
 {{/each}}
   </g>
 </svg>
@@ -64,14 +71,14 @@
 
 <style>
   span.overview{
-    width: 20%;
+    width: 10vw;
     color: violet;
     font-weight: 700;
-    font-size: 24px;
+    font-size: 0.5em;
   }
 
   svg {
-    width: 80%;
+    width: 70vw;
     border: 1px solid white;
   }
 
