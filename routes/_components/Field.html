@@ -10,18 +10,14 @@
       fill="#efefef"
     />
 {{#each field as f, i}}
-      <g>
+      <g transform="matrix(1,0,0,1,{{2 * f.x * cx}},{{f.y * cy}})">
         <use
-          x="{{(f.y % 2 === 0) ? f.x * 2 * cx :  (f.x + 0.5) * 2 * cx}}"
-          y="{{f.y * cy}}"
-          xlink:href="#hexagon" fill="{{states[f.v]}}" stroke="#efefef" stroke-opacity="0.2" />
-        <!--
-          <text
-          x="{{(f.y % 2 === 0) ? f.x * 2 * cx :  (f.x + 0.5) * 2 * cx}}"
-          y="{{f.y * cy}}"
-          font-size="{{cy}}px"
-        >{{i}}[{{f.x}},{{f.y}}]</text>
-        -->
+          x="{{(f.y % 2 === 0) ? f.x : (f.x + cx)}}"
+          y="{{f.y}}"
+          href="#hexagon" fill="{{states[f.v]}}"
+          stroke="#efefef" stroke-opacity="0.2"
+          on:click="click({x: f.x, y: f.y})"
+         />
       </g>
 {{/each}}
   </g>
@@ -41,8 +37,9 @@
     {{#each field as f, i}}
     <use
       x="{{f.x * cx}}" y="{{f.y * cy}}"
-      xlink:href="#rectangle" fill="{{states[f.v]}}" stroke="#efefef" stroke-opacity="0.2" />
-      on:click="click({x, y})"
+      href="#rectangle" fill="{{states[f.v]}}"
+      stroke="#efefef" stroke-opacity="0.2"
+      on:click="click({x: f.x, y: f.y})"
     />
     {{/each}}
   </g>
