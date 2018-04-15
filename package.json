@@ -3,7 +3,7 @@
   "description": "Cellular Automata built with svelte app maker",
   "version": "0.0.1",
   "scripts": {
-    "dev": "sapper dev",
+    "dev": "PORT=3030 sapper dev",
     "build": "sapper build",
     "export": "sapper export",
     "start": "sapper start",
