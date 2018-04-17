@@ -8,4 +8,7 @@ env:
 install:
   - npm install
   - npm install cypress
+  - npm install -g codecov
+script:
+  - npm run cov > coverage.lcov && codecov
 

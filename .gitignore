@@ -9,3 +9,5 @@ export
 build
 app/manifest
 .vscode/*
+.nyc_output/
+coverage/
