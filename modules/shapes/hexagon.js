@@ -1,9 +1,12 @@
 const bigHexagonPoints = '300,130 225,260 75,260 0,130 75,0 225,0'
 const hexagonPoints = '60,26 45,52 15,52 0,26 15,0 45,0'
 
-const field = (X, Y, state, f) => Array
-  .from({ length: X * Y })
-  .map((_, i) => ({
+const increasingValues = length => Array
+  .from({ length })
+  .map((v, i) => i)
+
+const field = (X, Y, state, f) => increasingValues(X * Y)
+  .map(i => ({
     x: i % X,
     y: Math.floor(i / X),
     v: f(i, state),
