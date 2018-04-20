@@ -1,11 +1,11 @@
 <div class="games">
-  {{#each fieldtypes as f}}
-    {{#each dimensions as [x, y]}}
-      {{#each states as s}}
-      <CA fieldtype={{f}} type="GoL" x={{x}} y={{y}} states={{s}} size="1"></CA>
-      {{/each}}
-    {{/each}}
-  {{/each}}
+  {#each fieldtypes as f}
+    {#each dimensions as [x, y]}
+      {#each states as s}
+      <CA fieldtype={f} type="GoL" x={x} y={y} states={s} size="1"></CA>
+      {/each}
+    {/each}
+  {/each}
 </div>
 
 <style>

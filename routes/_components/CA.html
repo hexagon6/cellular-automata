@@ -1,14 +1,14 @@
 <div class="container">
-<span>{{fieldtype}} CA of type: "{{type}}"</span>
+<span>{fieldtype} CA of type: "{type}"</span>
 <Field
-  fieldtype="{{fieldtype}}"
-  x="{{x}}"
-  y="{{y}}"
-  field="{{field}}"
-  states="{{states}}"
-  cx="{{cx}}"
-  cy="{{cy}}"
-  size="{{size}}"
+  fieldtype="{fieldtype}"
+  x="{x}"
+  y="{y}"
+  field="{field}"
+  states="{states}"
+  cx="{cx}"
+  cy="{cy}"
+  size="{size}"
 ></Field>
 </div>
 
@@ -57,9 +57,9 @@ export default {
     }
   },
   computed: {
-    field: (x, y, states, fieldtype) => fieldGen(fieldtype)(x, y, states.length, initializer),
-    cx: (fieldtype, size) => shapeDimensions(fieldtype, size).cx,
-    cy: (fieldtype, size) => shapeDimensions(fieldtype, size).cy
+    field: ({ x, y, states, fieldtype }) => fieldGen(fieldtype)(x, y, states.length, initializer),
+    cx: ({ fieldtype, size }) => shapeDimensions(fieldtype, size).cx,
+    cy: ({ fieldtype, size }) => shapeDimensions(fieldtype, size).cy
   },
   components: {
     Field,

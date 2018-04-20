@@ -1,7 +1,7 @@
 <ul>
-  {{#each els as [key, value] }}
-    <li>{{key}}: {{value}}</li>
-  {{/each}}
+  {#each els as [key, value] }
+    <li>{key}: {value}</li>
+  {/each}
 </ul>
 
 <style>
@@ -24,7 +24,7 @@ li {
       }
     },
     computed: {
-      els: elements => Object.entries(elements)
+      els: ({ elements }) => Object.entries(elements)
     }
   }
 </script>
