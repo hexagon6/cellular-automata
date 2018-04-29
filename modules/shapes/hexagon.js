@@ -1,16 +1,9 @@
 const bigHexagonPoints = '300,130 225,260 75,260 0,130 75,0 225,0'
 const hexagonPoints = '60,26 45,52 15,52 0,26 15,0 45,0'
 
-const increasingValues = length => Array
-  .from({ length })
-  .map((v, i) => i)
-
-const field = (X, Y, state, f) => increasingValues(X * Y)
-  .map(i => ({
-    x: i % X,
-    y: Math.floor(i / X),
-    v: f(i, state),
-  }))
+const _increasingValues = length => Array.from({ length }).map((v, i) => i)
+const _toCell = i => ({ x: i % X, y: Math.floor(i / X), v: f(i, state) })
+const field = (X, Y, state, f) => _increasingValues(X * Y).map(_toCell)
 
 const scale = (factor = 1) =>
   serialize( 
