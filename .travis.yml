@@ -6,9 +6,10 @@ env:
   global:
     - BUILD_TIMEOUT=10000
 install:
-  - npm install
-  - npm install cypress
-  - npm install -g codecov
+  - npm i -g pnpm
+  - pnpm i
+  - pnpm i cypress
+  - pnpm i -g codecov
 script:
-  - npm run cov > coverage.lcov && codecov
+  - pnpm run cov > coverage.lcov && codecov
 
