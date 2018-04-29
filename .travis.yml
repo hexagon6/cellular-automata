@@ -8,6 +8,7 @@ env:
 install:
   - npm i -g pnpm
   - pnpm i
+  - pnpm i cypress
   - pnpm i -g codecov
 script:
   - pnpm run cov > coverage.lcov && codecov
