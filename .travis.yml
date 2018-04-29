@@ -10,8 +10,7 @@ env:
     - BUILD_TIMEOUT=10000
 install:
   - npm install
-  - npm install cypress
-  - npm install -g codecov
 script:
+  - npm run cy:run
   - npm run cov > coverage.lcov && codecov
 
