@@ -8,8 +8,10 @@ node_js:
 env:
   global:
     - BUILD_TIMEOUT=10000
+before_install:
+  - npm i -g npm@6
 install:
-  - npm install
+  - npm ci
 script:
   - npm run dev &
   - npm run cy:run
