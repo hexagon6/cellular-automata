@@ -51,7 +51,10 @@ const initializer = (_, s) => Math.floor(Math.random() * s)
 export default {
   data() {
     return {
-      field: {},
+      field: [],
+      x: 0,
+      y: 0,
+      fieldtype: '',
       states: [],
       size: 1,
     }
