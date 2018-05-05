@@ -1,19 +1,19 @@
 {#if fieldtype === 'hexagonal'}
-<svg width="{(x+2) * cx * 2}" height="{(y + 1) * cy}">
+<svg width="{x * cx}" height="{(y + 1) * cy * 2}">
   <defs>
     <polygon id="hexagon" points="{hexagon}" />
   </defs>
   <g>
     <rect
-      width="{x * cx * 2 + 0.2 * cx}"
-      height="{y * cy + 0.5 * cy}"
+      width="{x * cx + 0.5 * cx}"
+      height="{y * cy * 2 + 1.5 * cy}"
       fill="#efefef"
     />
 {#each field as f, i}
-      <g transform="matrix(1,0,0,1,{2 * f.x * cx},{f.y * cy})">
+      <g transform="matrix(1,0,0,1,{1 * f.x * cx},{2 * f.y * cy})">
         <use
-          x="{(f.y % 2 === 0) ? f.x : (f.x + cx)}"
-          y="{f.y}"
+          x="{f.x}"
+          y="{(f.x % 2 === 1) ? (f.y + cy) : f.y}"
           href="#hexagon" fill="{states[f.v]}"
           stroke="#efefef" stroke-opacity="0.2"
           on:click="click({x: f.x, y: f.y})"

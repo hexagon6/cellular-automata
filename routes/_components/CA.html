@@ -1,15 +1,16 @@
 <div class="container">
-<span>{fieldtype} CA of type: "{type}"</span>
+<span>[{id} - {name}] {fieldtype} CA of type: "{type}"</span>
 <Field
-  fieldtype="{fieldtype}"
+  name="{name}"
   x="{x}"
   y="{y}"
   field="{field}"
+  fieldtype="{fieldtype}"
   states="{states}"
   cx="{cx}"
   cy="{cy}"
   size="{size}"
-></Field>
+/>
 </div>
 
 <style>
@@ -23,6 +24,7 @@
 import Field from './Field.html'
 import { hexagonal, algorithm, rectangular } from '../../modules'
 
+// TODO: extract this function
 const fieldGen = type => {
   const _default = 'rectangular'
   const generators = {
@@ -60,7 +62,6 @@ export default {
     }
   },
   computed: {
-    field: ({ x, y, states, fieldtype }) => fieldGen(fieldtype)(x, y, states.length, initializer),
     cx: ({ fieldtype, size }) => shapeDimensions(fieldtype, size).cx,
     cy: ({ fieldtype, size }) => shapeDimensions(fieldtype, size).cy
   },
