@@ -4,6 +4,7 @@ import sapper from 'sapper'
 import serve from 'serve-static'
 import { Store } from 'svelte/store.js'
 import { routes } from './manifest/server.js'
+import App from './App.html'
 
 polka() // You can also use Express
   .use(
@@ -12,6 +13,7 @@ polka() // You can also use Express
     // authenticationMiddleware(), // TODO: implement user session handling
     sapper({
       routes,
+      App,
       store: request => {
         return new Store({
           user: request.user,
