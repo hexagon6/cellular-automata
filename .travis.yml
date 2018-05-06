@@ -22,7 +22,7 @@ script:
 after_success:
   - BASE_URL=$BASE_URL npm run export --basepath $BASE_URL
 before_deploy:
-  - mv -v export/* .; ls .
+  - mv -v $BASE_URL/* .; ls .
 deploy:
   provider: pages
   skip-cleanup: true
