@@ -20,9 +20,9 @@ script:
   - kill %1
   - npm run cov > coverage.lcov && codecov
 after_success:
-  - BASE_URL=$BASE_URL npm run export -- --basepath $BASE_URL
+  - npm run export -- --basepath $BASE_URL
 before_deploy:
-  - mv -v $BASE_URL/* .; ls .
+  - mv -v export/* .; ls .
 deploy:
   provider: pages
   skip-cleanup: true
