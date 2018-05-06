@@ -6,8 +6,7 @@ import { Store } from 'svelte/store.js'
 import { routes } from './manifest/server.js'
 import App from './App.html'
 
-polka() // You can also use Express
-  .use(
+const serverArgs = [
     compression({ threshold: 0 }),
     serve('assets'),
     // authenticationMiddleware(), // TODO: implement user session handling
@@ -20,5 +19,11 @@ polka() // You can also use Express
         })
       },
     })
-  )
+]
+
+const { BASE_URL } = process.env
+BASE_URL && serverArgs.unshift(BASE_URL)
+
+polka() // You can also use Express
+  .use(...serverArgs)
   .listen(process.env.PORT)
