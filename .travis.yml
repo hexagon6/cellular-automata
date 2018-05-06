@@ -20,7 +20,7 @@ script:
 after_success:
   - npm run export
 before_deploy:
-  - mv docs _docs; mv export docs; ls docs
+  - mv -v export/* .; ls .
 deploy:
   provider: pages
   skip-cleanup: true
