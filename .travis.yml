@@ -15,4 +15,7 @@ script:
   - npm run dev &
   - npm run cy:run
   - npm run cov > coverage.lcov && codecov
-
+after_success:
+  - mv docs _docs; npm run export && mv export docs; ls docs
+deploy:
+  skip_cleanup: true
