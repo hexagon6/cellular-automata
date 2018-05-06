@@ -1,0 +1,79 @@
+{
+  "name": "@hexagon6/sapper-cellular-automata",
+  "description": "Cellular Automata built with svelte app maker",
+  "version": "0.0.1-alpha.3",
+  "scripts": {
+    "dev": "PORT=3030 sapper dev",
+    "build": "sapper build",
+    "export": "sapper export",
+    "start": "sapper start",
+    "cy:run": "cypress run",
+    "cy:open": "cypress open",
+    "lint": "prettier **/*.js **/*.json",
+    "lint:fix": "prettier --write **/*.js **/*.json",
+    "unit": "ava",
+    "unit:watch": "ava --watch",
+    "cov": "nyc --reporter=lcov --reporter=text-lcov npm run unit",
+    "test:dev": "run-p --race dev unit",
+    "test": "run-s build unit"
+  },
+  "dependencies": {
+    "compression": "^1.7.1",
+    "esm": "^3.0.19",
+    "npm-run-all": "^4.1.2",
+    "polka": "^0.3.4",
+    "sapper": "^0.12.0",
+    "serve-static": "^1.13.1",
+    "svelte": "^2.0.0",
+    "svelte-loader": "^2.3.3",
+    "webpack": "^4.1.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.0.0-beta.44",
+    "@babel/preset-env": "^7.0.0-beta.44",
+    "@babel/register": "^7.0.0-beta.44",
+    "ava": "^1.0.0-beta.4",
+    "codecov": "^3.0.1",
+    "cypress": "^2.1.0",
+    "nyc": "^11.6.0",
+    "prettier": "1.11.1"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "ava": {
+    "files": [
+      "tests/*.js",
+      "modules/{**/,}.js"
+    ],
+    "sources": [
+      "modules/**"
+    ],
+    "require": [
+      "esm",
+      "@babel/register"
+    ],
+    "babel": {
+      "testOptions": {
+        "babelrc": false,
+        "plugins": [],
+        "presets": [
+          [
+            "module:ava/stage-4",
+            {
+              "modules": false
+            }
+          ],
+          "@babel/preset-env"
+        ]
+      }
+    }
+  },
+  "main": "index.js",
+  "module": "main.js",
+  "repository": "git@github.com:hexagon6/sapper-cellular-automata.git",
+  "author": "Tobi Turing <dev@fet.li>",
+  "license": "MIT"
+}

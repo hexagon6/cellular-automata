@@ -1,0 +1,117 @@
+{#if fieldtype === 'hexagonal'}
+<svg width="{x * cx}" height="{(y + 1) * cy * 2}">
+  <defs>
+    <polygon id="hexagon" points="{hexagon}" />
+  </defs>
+  <g>
+    <rect
+      width="{x * cx + 0.5 * cx}"
+      height="{y * cy * 2 + 1.5 * cy}"
+      fill="#efefef"
+    />
+{#each field as f, i}
+      <g transform="matrix(1,0,0,1,{1 * f.x * cx},{2 * f.y * cy})">
+        <use
+          x="{f.x}"
+          y="{(f.x % 2 === 1) ? (f.y + cy) : f.y}"
+          href="#hexagon" fill="{states[f.v]}"
+          stroke="#efefef" stroke-opacity="0.2"
+          on:click="click({x: f.x, y: f.y})"
+         />
+      </g>
+{/each}
+  </g>
+</svg>
+{/if}
+
+{#if fieldtype === 'rectangular'}
+<svg width="{x * cx}" height="{y * cy}">
+  <defs>
+    <rect
+      id="rectangle"
+      width={cx}
+      height={cy}
+    />
+  </defs>
+  <g>
+    {#each field as f, i}
+    <use
+      x="{f.x * cx}" y="{f.y * cy}"
+      href="#rectangle" fill="{states[f.v]}"
+      stroke="#efefef" stroke-opacity="0.2"
+      on:click="click({x: f.x, y: f.y})"
+    />
+    {/each}
+  </g>
+</svg>
+{/if}
+<span class="overview">
+  <LabeledList elements="{
+    {
+      x,
+      y,
+      cells: x * y,
+      cx,
+      cy,
+    }
+    }"
+  />
+  <div>
+  <ul>
+    {#each states as _s}
+      <li>
+      <span style="{`color: ${_s};`}">[{_s}]</span></li> {/each}
+  </ul>
+  </div>
+</span>
+
+
+<style>
+  span.overview{
+    width: 10vw;
+    color: violet;
+    font-weight: 700;
+    font-size: 0.5em;
+  }
+
+  svg {
+    width: 70vw;
+    border: 1px solid white;
+  }
+
+
+  ul {
+    font-weight: 300;
+    font-style: italic;
+    list-style: none;
+  }
+
+  li {
+    display: block;
+    float: left;
+  }
+</style>
+
+<script>
+import LabeledList from './LabeledList.html'
+import { hexagonal } from '../../modules'
+
+const { scale } = hexagonal
+
+export default {
+  data() {
+    return {
+      hexagon: scale(1),
+    }
+  },
+  computed: {
+    hexagon: ({ size }) => scale(size)
+  },
+  methods: {
+    click: function({x, y}) { console.log(x, y) }
+  },
+  components: {
+    LabeledList,
+  }
+}
+</script>

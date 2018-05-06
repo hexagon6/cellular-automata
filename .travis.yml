@@ -1,0 +1,27 @@
+sudo: false
+language: node_js
+node_js:
+  - "stable"
+  - "lts/*"
+
+env:
+  global:
+    - BUILD_TIMEOUT=10000
+before_install:
+  - npm i -g npm@6
+install:
+  - npm ci
+script:
+  - npm run dev &
+  - npm run cy:run
+  - kill %1
+  - npm run cov > coverage.lcov && codecov
+after_success:
+  - mv docs _docs; npm run export && mv export docs; ls docs
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN
+  keep-history: true
+  on:
+    branch: master

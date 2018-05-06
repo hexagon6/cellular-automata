@@ -1,0 +1,92 @@
+<button on:click='set({ fieldtype: "hexagonal" })'>
+  hexagonal
+</button>
+
+<button on:click='set({ fieldtype: "rectangular" })'>
+  rectangular
+</button>
+
+<button on:click="set({
+  state: ['#ff6738', '#18c8ff', '#efaf03', '#60f370'],
+})">
+  4 states 
+</button>
+
+<button on:click="set({ state: ['#ffffff', '#efefef'], })">
+  2 states 
+</button>
+
+<button on:click="generateField({ x, y, initializer: (n, i) => (n % i), field: [] })">initialize empty field</button>
+
+<div class="games">
+  <CA
+    id={id}
+    name={name}
+    field={field}
+    fieldtype={fieldtype}
+    type={algorithm.name}
+    x={x}
+    y={y}
+    states={state}
+    size="1"
+  />
+</div>
+
+<style>
+  div.games {
+    display: flex;
+    align-content: space-between;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+</style>
+
+<script>
+import CA from './CA.html';
+import { GameofLifeDefault, hexagonal, rectangular } from '../../modules'
+
+console.log(GameofLifeDefault)
+const [x, y] = [8, 8]
+const field = []
+// store.set({
+//   field,
+//   x,
+//   y,
+// })
+
+const fieldGen = type => {
+  const _default = 'rectangular'
+  const generators = {
+    'hexagonal': hexagonal.field,
+    'rectangular': rectangular.field,
+  }
+  return (type in generators) ? generators[type] : generators[_default]
+}
+export default {
+  oncreate() {
+    console.log('init GameofLife')
+    console.log(Object.keys(GameofLifeDefault))
+  },
+  data () {
+    return {
+      x,
+      y,
+      field,
+      ...GameofLifeDefault,
+    }
+  },
+  methods: {
+    generateField: function({x, y, initializer, field}) {
+      const state = this.get('state')
+      const fieldtype = this.get('fieldtype')
+      console.log(x, y, initializer, state, fieldtype)
+      const f = fieldGen(fieldtype)(x, y, 2, initializer)
+      console.log(f)
+      this.set({ field: f })
+    }
+  },
+  components: {
+    CA,
+  }
+}
+</script>

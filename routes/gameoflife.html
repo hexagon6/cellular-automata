@@ -1,0 +1,30 @@
+<svelte:head>
+	<title>About</title>
+</svelte:head>
+
+<!--
+<h1>Game of Life</h1>
+
+<p>by hexagon6 <img alt='hexagon6' width="100" src='/hexagon6.jpg'></p>
+
+<p>Here you can play the game</p>
+-->
+<div class="container">
+  <GameofLife id="1"></GameofLife>
+  <GameofLife id="2"></GameofLife>
+</div>
+
+<style>
+	.container {
+		width: 100%;
+	}
+</style>
+<script>
+import GameofLife from './_components/GameofLife.html';
+
+export default {
+  components: {
+    GameofLife,
+  }
+};
+</script>
