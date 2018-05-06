@@ -23,6 +23,7 @@ after_success:
   - npm run export -- --basepath $BASE_URL
 before_deploy:
   - mv -v export/${BASE_URL}/* .; ls .
+  - touch .nojekyll # stop ignoring files staring with _, ., # or ~
 deploy:
   provider: pages
   skip-cleanup: true
