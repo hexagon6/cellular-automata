@@ -9,6 +9,7 @@
     "start": "sapper start",
     "cy:run": "cypress run",
     "cy:open": "cypress open",
+    "cy:record": "cypress run --record --key ${CYPRESS_RECORD_KEY}",
     "lint": "prettier **/*.js **/*.json",
     "lint:fix": "prettier --write **/*.js **/*.json",
     "unit": "ava",

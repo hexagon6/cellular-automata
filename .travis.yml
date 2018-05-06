@@ -13,7 +13,9 @@ before_install:
 install:
   - npm ci
 script:
+  - npm run dev &
   - $(npm bin)/cypress run --record
+  - kill %1
   - npm run cov > coverage.lcov && codecov
 after_success:
   - npm run export
