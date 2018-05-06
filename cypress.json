@@ -1,4 +1,5 @@
 {
-	"baseUrl": "http://localhost:3030",
-	"videoRecording": false
+  "baseUrl": "http://localhost:3030",
+  "videoRecording": false,
+  "projectId": "yny2fo"
 }

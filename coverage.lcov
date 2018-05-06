@@ -1,9 +1,9 @@
 
-> @hexagon6/sapper-cellular-automata@0.0.1-alpha.3 cov /home/travis/build/hexagon6/sapper-cellular-automata
+> @hexagon6/sapper-cellular-automata@0.0.1-alpha.4 cov /home/travis/build/hexagon6/sapper-cellular-automata
 > nyc --reporter=lcov --reporter=text-lcov npm run unit
 
 
-> @hexagon6/sapper-cellular-automata@0.0.1-alpha.3 unit /home/travis/build/hexagon6/sapper-cellular-automata
+> @hexagon6/sapper-cellular-automata@0.0.1-alpha.4 unit /home/travis/build/hexagon6/sapper-cellular-automata
 > ava
 
 TN:
