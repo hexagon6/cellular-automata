@@ -14,7 +14,7 @@
         <use
           x="{f.x}"
           y="{(f.x % 2 === 1) ? (f.y + cy) : f.y}"
-          href="#hexagon" fill="{statecolors[f.v]}"
+          href="#hexagon" fill="{cellstate(statecolors, f.v)}"
           stroke="#efefef" stroke-opacity="0.2"
           on:click="click({x: f.x, y: f.y})"
          />
@@ -37,7 +37,7 @@
     {#each field as f, i}
     <use
       x="{f.x * cx}" y="{f.y * cy}"
-      href="#rectangle" fill="{statecolors[f.v]}"
+      href="#rectangle" fill="{cellstate(statecolors, f.v)}"
       stroke="#efefef" stroke-opacity="0.2"
       on:click="click({x: f.x, y: f.y})"
     />
@@ -107,6 +107,9 @@ export default {
   },
   computed: {
     hexagon: ({ size }) => scale(size)
+  },
+  helpers: {
+    cellstate: (colors, n) => n < colors.length ? colors[n] : colors[0]
   },
   methods: {
     click: function ({ x, y }) { console.log(x, y) }
