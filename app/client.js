@@ -6,10 +6,10 @@ import App from './App.html'
 
 // `routes` is an array of route objects injected by Sapper
 init({
-	target: document.querySelector('#sapper'),
-	routes,
-	App,
-	store: data => new Store(data),
+  target: document.querySelector('#sapper'),
+  routes,
+  App,
+  store: data => new Store(data),
 })
 
 if (module.hot) module.hot.accept()

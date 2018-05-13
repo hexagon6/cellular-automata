@@ -7,18 +7,18 @@ import { routes } from './manifest/server.js'
 import App from './App.html'
 
 const serverArgs = [
-    compression({ threshold: 0 }),
-    serve('assets'),
-    // authenticationMiddleware(), // TODO: implement user session handling
-    sapper({
-      routes,
-      App,
-      store: request => {
-        return new Store({
-          user: request.user,
-        })
-      },
-    })
+  compression({ threshold: 0 }),
+  serve('assets'),
+  // authenticationMiddleware(), // TODO: implement user session handling
+  sapper({
+    routes,
+    App,
+    store: request => {
+      return new Store({
+        user: request.user,
+      })
+    },
+  }),
 ]
 
 const { BASE_URL } = process.env

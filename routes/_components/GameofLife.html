@@ -7,12 +7,12 @@
 </button>
 
 <button on:click="set({
-  state: ['#ff6738', '#18c8ff', '#efaf03', '#60f370'],
+  statecolors: ['#ff6738', '#18c8ff', '#efaf03', '#60f370'],
 })">
   4 states 
 </button>
 
-<button on:click="set({ state: ['#ffffff', '#efefef'], })">
+<button on:click="set({ statecolors: ['#ffffff', '#efefef'], })">
   2 states 
 </button>
 
@@ -45,7 +45,6 @@
 import CA from './CA.html';
 import { GameofLifeDefault, hexagonal, rectangular } from '../../modules'
 
-console.log(GameofLifeDefault)
 const [x, y] = [8, 8]
 const field = []
 // store.set({
@@ -65,9 +64,8 @@ const fieldGen = type => {
 export default {
   oncreate() {
     console.log('init GameofLife')
-    console.log(Object.keys(GameofLifeDefault))
   },
-  data () {
+    data() {
     return {
       x,
       y,
@@ -76,12 +74,11 @@ export default {
     }
   },
   methods: {
-    generateField: function({x, y, initializer, field}) {
-      const state = this.get('state')
+      generateField: function ({ x, y, initializer, field }) {
+        const statecolors = this.get().statecolors
+        const states = statecolors.length
       const fieldtype = this.get('fieldtype')
-      console.log(x, y, initializer, state, fieldtype)
-      const f = fieldGen(fieldtype)(x, y, 2, initializer)
-      console.log(f)
+        const f = fieldGen(fieldtype)(x, y, states, initializer)
       this.set({ field: f })
     }
   },
