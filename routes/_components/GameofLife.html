@@ -45,7 +45,6 @@
 import CA from './CA.html';
 import { GameofLifeDefault, hexagonal, rectangular } from '../../modules'
 
-console.log(GameofLifeDefault)
 const [x, y] = [8, 8]
 const field = []
 // store.set({
@@ -65,9 +64,8 @@ const fieldGen = type => {
 export default {
   oncreate() {
     console.log('init GameofLife')
-    console.log(Object.keys(GameofLifeDefault))
   },
-  data () {
+    data() {
     return {
       x,
       y,

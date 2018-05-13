@@ -39,23 +39,10 @@
     "nyc": "^11.6.0",
     "prettier": "1.11.1"
   },
-  "prettier": {
-    "semi": false,
-    "singleQuote": true,
-    "trailingComma": "es5"
-  },
   "ava": {
-    "files": [
-      "tests/*.js",
-      "modules/{**/,}.js"
-    ],
-    "sources": [
-      "modules/**"
-    ],
-    "require": [
-      "esm",
-      "@babel/register"
-    ],
+    "files": ["tests/*.js", "modules/{**/,}.js"],
+    "sources": ["modules/**"],
+    "require": ["esm", "@babel/register"],
     "babel": {
       "testOptions": {
         "babelrc": false,
