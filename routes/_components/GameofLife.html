@@ -75,9 +75,8 @@ export default {
   },
   methods: {
       generateField: function ({ x, y, initializer, field }) {
-        const statecolors = this.get().statecolors
+        const { statecolors, fieldtype } = this.get()
         const states = statecolors.length
-        const fieldtype = this.get('fieldtype')
         const f = fieldGen(fieldtype)(x, y, states, initializer)
       this.set({ field: f })
     }
