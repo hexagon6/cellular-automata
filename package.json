@@ -27,7 +27,7 @@
     "serve-static": "^1.13.1",
     "svelte": "^2.0.0",
     "svelte-loader": "^2.3.3",
-    "webpack": "^4.1.0"
+    "webpack": "^4.8.3"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.44",
@@ -36,7 +36,7 @@
     "ava": "^1.0.0-beta.4",
     "codecov": "^3.0.1",
     "cypress": "^2.1.0",
-    "nyc": "^11.6.0",
+    "nyc": "^11.7.3",
     "prettier": "1.11.1"
   },
   "ava": {
