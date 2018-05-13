@@ -12,6 +12,6 @@ export default {
   field: [],
   fieldtype: fieldtypes[0],
   fieldtypes,
-  state: stati[0],
+  statecolors: stati[0],
   stati: stati,
 };
