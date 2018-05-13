@@ -40,9 +40,17 @@
     "prettier": "1.11.1"
   },
   "ava": {
-    "files": ["tests/*.js", "modules/{**/,}.js"],
-    "sources": ["modules/**"],
-    "require": ["esm", "@babel/register"],
+    "files": [
+      "tests/*.js",
+      "modules/{**/,}.js"
+    ],
+    "sources": [
+      "modules/**"
+    ],
+    "require": [
+      "esm",
+      "@babel/register"
+    ],
     "babel": {
       "testOptions": {
         "babelrc": false,
