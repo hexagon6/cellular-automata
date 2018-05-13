@@ -27,7 +27,7 @@
     type={algorithm.name}
     x={x}
     y={y}
-    states={state}
+    statecolors={statecolors}
     size="1"
   />
 </div>
@@ -77,7 +77,7 @@ export default {
       generateField: function ({ x, y, initializer, field }) {
         const statecolors = this.get().statecolors
         const states = statecolors.length
-      const fieldtype = this.get('fieldtype')
+        const fieldtype = this.get('fieldtype')
         const f = fieldGen(fieldtype)(x, y, states, initializer)
       this.set({ field: f })
     }
