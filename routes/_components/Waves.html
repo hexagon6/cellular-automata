@@ -46,12 +46,11 @@
       console.log('init GameofLife')
     },
     data() {
-      return {
+      return Object.assign({
         x,
         y,
-        field,
-        ...WavesDefault,
-      }
+        field
+      }, WavesDefault)
     },
     methods: {
       generateField: function ({ x, y, initializer, field }) {
