@@ -23,6 +23,7 @@ jobs:
   include:
     - stage: test
       script:
+        - npm i cypress
         - npm run dev &
         - npm run cy:record
         - kill %1
