@@ -24,12 +24,13 @@ jobs:
     - # unit tests
       script:
         - npm run cov > coverage.lcov && codecov
-    - stage: build
-      after_success:
-        - npm run export -- --basepath $BASE_URL
-    - stage: deploy
+    - stage: build & deploy
       before_deploy:
-        - mv -v export/${BASE_URL}/* .; ls .
+        - npm run export -- --basepath $BASE_URL
+        - mv -v export/${BASE_URL}/* .
+        - ls .
+        - find . -maxdepth 1 ! '(' -name export -o -name '.git*' -o -name '.' ')' -delete
+        - ls .
         - touch .nojekyll # stop ignoring files staring with _, ., # or ~
       deploy:
         provider: pages
