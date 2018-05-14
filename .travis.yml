@@ -2,7 +2,6 @@ dist: trusty
 sudo: false
 language: node_js
 node_js:
-  - "stable"
   - "lts/*"
 
 env:
@@ -14,11 +13,6 @@ before_install:
   - npm i -g npm@6
 install:
   - npm ci
-after_success:
-  - npm run export -- --basepath $BASE_URL
-before_deploy:
-  - mv -v export/${BASE_URL}/* .; ls .
-  - touch .nojekyll # stop ignoring files staring with _, ., # or ~
 jobs:
   include:
     - stage: test
@@ -30,8 +24,13 @@ jobs:
     - # unit tests
       script:
         - npm run cov > coverage.lcov && codecov
+    - stage: build
+      after_success:
+        - npm run export -- --basepath $BASE_URL
     - stage: deploy
-      node_js: "stable"
+      before_deploy:
+        - mv -v export/${BASE_URL}/* .; ls .
+        - touch .nojekyll # stop ignoring files staring with _, ., # or ~
       deploy:
         provider: pages
         skip-cleanup: true
