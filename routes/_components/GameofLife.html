@@ -66,12 +66,11 @@ export default {
     console.log('init GameofLife')
   },
     data() {
-    return {
+    return Object.assign({
       x,
       y,
-      field,
-      ...GameofLifeDefault,
-    }
+      field
+    }, GameofLifeDefault)
   },
   methods: {
       generateField: function ({ x, y, initializer, field }) {
