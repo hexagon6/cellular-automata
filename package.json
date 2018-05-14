@@ -1,7 +1,7 @@
 {
   "name": "@hexagon6/sapper-cellular-automata",
   "description": "Cellular Automata built with svelte app maker",
-  "version": "0.0.1-alpha.6",
+  "version": "0.0.1-alpha.7",
   "scripts": {
     "dev": "PORT=3030 sapper dev",
     "build": "sapper build",
@@ -35,7 +35,6 @@
     "@babel/register": "^7.0.0-beta.44",
     "ava": "^1.0.0-beta.4",
     "codecov": "^3.0.1",
-    "cypress": "^2.1.0",
     "nyc": "^11.7.3",
     "prettier": "1.11.1"
   },
