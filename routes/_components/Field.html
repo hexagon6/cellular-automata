@@ -1,4 +1,4 @@
-{#if fieldtype === 'hexagonal'}
+{#if $fieldtype === 'hexagonal'}
 <svg width="{x * cx}" height="{(y + 1) * cy * 2}">
   <defs>
     <polygon id="hexagon" points="{hexagon}" />
@@ -24,7 +24,7 @@
 </svg>
 {/if}
 
-{#if fieldtype === 'rectangular'}
+{#if $fieldtype === 'rectangular'}
 <svg width="{x * cx}" height="{y * cy}">
   <defs>
     <rect

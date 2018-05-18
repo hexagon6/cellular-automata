@@ -1,11 +1,3 @@
-<button on:click='set({ fieldtype: "hexagonal" })'>
-  hexagonal
-</button>
-
-<button on:click='set({ fieldtype: "rectangular" })'>
-  rectangular
-</button>
-
 <button on:click="set({
   statecolors: ['#ff6738', '#18c8ff', '#efaf03', '#60f370'],
 })">
@@ -18,7 +10,7 @@
 
 <button on:click="generateField({ x, y, initializer: (n, i) => (n % i), field: [] })">initialize empty field</button>
 
-<CA id={id} name={name} field={field} fieldtype={fieldtype} type={algorithm.name} x={x} y={y} statecolors={statecolors} size="1"
+<CA id={id} name={name} field={field} type={algorithm.name} x={x} y={y} statecolors={statecolors} size="1"
 />
 
 <script>
@@ -43,7 +35,8 @@
   }
   export default {
     oncreate() {
-      console.log('init GameofLife')
+      console.log('init Waves')
+      this.store.set({fieldtype: WavesDefault.fieldtype})
     },
     data() {
       return Object.assign({
@@ -54,9 +47,9 @@
     },
     methods: {
       generateField: function ({ x, y, initializer, field }) {
-        const { statecolors, fieldtype } = this.get()
+        const { statecolors, $fieldtype } = this.get()
         const states = statecolors.length
-        const f = fieldGen(fieldtype)(x, y, states, initializer)
+        const f = fieldGen($fieldtype)(x, y, states, initializer)
         this.set({ field: f })
       }
     },

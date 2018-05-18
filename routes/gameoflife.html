@@ -3,6 +3,7 @@
 </svelte:head>
 
 <div class="container">
+  <ControlPanel />
   <GameofLife id="1"></GameofLife>
 </div>
 
@@ -12,10 +13,12 @@
 	}
 </style>
 <script>
+import ControlPanel from './_components/ControlPanel.html'
 import GameofLife from './_components/GameofLife.html';
 
 export default {
   components: {
+    ControlPanel,
     GameofLife,
   }
 };

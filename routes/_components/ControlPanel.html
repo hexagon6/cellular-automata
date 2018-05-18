@@ -1,0 +1,44 @@
+<div class="control-panel">
+  <div class="section">
+    <button on:click='$set({ stopped: !$stopped})'>
+      {#if $stopped}
+        <div>
+          <span>⌛</span>
+        </div>
+      {:else}
+        <div style="transform:rotate(180deg);">
+          <span>⌛</span>
+        </div>
+      {/if}
+    </button>
+  </div>
+  <div class="section">
+    <input on:click='$set({ fieldtype: $fieldtype === "rectangular" ? "hexagonal" : "rectangular" })' type="button" value="{$fieldtype}" />
+  </div>
+</div>
+
+<style>
+  button, input[type="button"] {
+    background-color: lightblue;
+    border-radius: 6px;
+    border-color: darkcyan;
+  }
+
+  /* style alternative state  */
+  button:d{
+    background-color: darkviolet;
+  }
+  
+  .control-panel {
+    display: flex;
+    justify-items: center;
+    justify-content: flex-start;
+    background: seashell;
+    padding: 4px;
+    margin: 2px;
+  }
+
+  .section {
+    border-left: 1px solid greenyellow;
+  }
+</style>

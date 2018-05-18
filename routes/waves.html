@@ -3,6 +3,7 @@
 </svelte:head>
 
 <div class="container">
+  <ControlPanel />
   <Waves id="2"></Waves>
 </div>
 
@@ -12,10 +13,12 @@
 	}
 </style>
 <script>
+import ControlPanel from './_components/ControlPanel.html'
 import Waves from './_components/Waves.html';
 
 export default {
   components: {
+    ControlPanel,
     Waves,
   }
 };

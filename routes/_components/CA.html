@@ -1,11 +1,10 @@
 <div class="container">
-<span>[{id} - {name}] {fieldtype} CA of type: "{type}"</span>
+<span>[{id} - {name}] {$fieldtype} CA of type: "{type}"</span>
 <Field
   name="{name}"
   x="{x}"
   y="{y}"
   field="{field}"
-  fieldtype="{fieldtype}"
   statecolors="{statecolors}"
   cx="{cx}"
   cy="{cy}"
@@ -56,14 +55,13 @@ export default {
       field: [],
       x: 0,
       y: 0,
-      fieldtype: '',
       statecolors: [],
       size: 1,
     }
   },
   computed: {
-    cx: ({ fieldtype, size }) => shapeDimensions(fieldtype, size).cx,
-    cy: ({ fieldtype, size }) => shapeDimensions(fieldtype, size).cy
+    cx: ({ $fieldtype, size }) => shapeDimensions($fieldtype, size).cx,
+    cy: ({ $fieldtype, size }) => shapeDimensions($fieldtype, size).cy
   },
   components: {
     Field,

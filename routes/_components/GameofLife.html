@@ -1,11 +1,3 @@
-<button on:click='set({ fieldtype: "hexagonal" })'>
-  hexagonal
-</button>
-
-<button on:click='set({ fieldtype: "rectangular" })'>
-  rectangular
-</button>
-
 <button on:click="set({
   statecolors: ['#ff6738', '#18c8ff', '#efaf03', '#60f370'],
 })">
@@ -23,7 +15,6 @@
     id={id}
     name={name}
     field={field}
-    fieldtype={fieldtype}
     type={algorithm.name}
     x={x}
     y={y}
@@ -64,6 +55,7 @@ const fieldGen = type => {
 export default {
   oncreate() {
     console.log('init GameofLife')
+    this.store.set({fieldtype: GameofLifeDefault.fieldtype})
   },
     data() {
     return Object.assign({
