@@ -1,12 +1,12 @@
 {#if $fieldtype === 'hexagonal'}
-<svg width="{x * cx}" height="{(y + 1) * cy * 2}">
+<svg width="{$x * cx}" height="{($y + 1) * cy * 2}">
   <defs>
     <polygon id="hexagon" points="{hexagon}" />
   </defs>
   <g>
     <rect
-      width="{x * cx + 0.5 * cx}"
-      height="{y * cy * 2 + 1.5 * cy}"
+      width="{$x * cx + 0.5 * cx}"
+      height="{$y * cy * 2 + 1.5 * cy}"
       fill="#efefef"
     />
 {#each field as f, i}
@@ -25,7 +25,7 @@
 {/if}
 
 {#if $fieldtype === 'rectangular'}
-<svg width="{x * cx}" height="{y * cy}">
+<svg width="{$x * cx}" height="{$y * cy}">
   <defs>
     <rect
       id="rectangle"
@@ -48,9 +48,9 @@
 <span class="overview">
   <LabeledList elements="{
     {
-      x,
-      y,
-      cells: x * y,
+      $x,
+      $y,
+      cells: $x * $y,
       cx,
       cy,
     }
