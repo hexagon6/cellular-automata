@@ -13,7 +13,16 @@
     </button>
   </div>
   <div class="section">
-    <input on:click='$set({ fieldtype: $fieldtype === "rectangular" ? "hexagonal" : "rectangular" })' type="button" value="{$fieldtype}" />
+    <input on:click='$set({ fieldtype: $fieldtype === "rectangular"
+     ? "hexagonal"
+     : "rectangular"
+    })' type="button" value="{$fieldtype}" />
+  </div>
+  <div class="section">
+    <input on:click='$set({ statecolors: $statecolors.length === 2
+      ? $stati[0]
+      : $stati[1]
+    })' type="button" value="{`${$statecolors ? $statecolors.length: 0} states`}" />
   </div>
 </div>
 

@@ -14,7 +14,7 @@
         <use
           x="{f.x}"
           y="{(f.x % 2 === 1) ? (f.y + cy) : f.y}"
-          href="#hexagon" fill="{cellstate(statecolors, f.v)}"
+          href="#hexagon" fill="{cellstate($statecolors, f.v)}"
           stroke="#efefef" stroke-opacity="0.2"
           on:click="click({x: f.x, y: f.y})"
          />
@@ -37,7 +37,7 @@
     {#each field as f, i}
     <use
       x="{f.x * cx}" y="{f.y * cy}"
-      href="#rectangle" fill="{cellstate(statecolors, f.v)}"
+      href="#rectangle" fill="{cellstate($statecolors, f.v)}"
       stroke="#efefef" stroke-opacity="0.2"
       on:click="click({x: f.x, y: f.y})"
     />
@@ -57,12 +57,14 @@
     }"
   />
   <div>
+  {#if $statecolors}
   <ul>
-      {#each statecolors as _s}
+      {#each $statecolors as _s}
       <li>
         <span style="{`color: ${_s};`}">[{_s}]</span>
       </li> {/each}
   </ul>
+  {/if}
   </div>
 </span>
 
