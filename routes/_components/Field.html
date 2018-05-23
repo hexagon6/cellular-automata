@@ -1,50 +1,11 @@
-{#if $fieldtype === 'hexagonal'}
-<svg width="{$x * cx}" height="{($y + 1) * cy * 2}">
-  <defs>
-    <polygon id="hexagon" points="{hexagon}" />
-  </defs>
-  <g>
-    <rect
-      width="{$x * cx + 0.5 * cx}"
-      height="{$y * cy * 2 + 1.5 * cy}"
-      fill="#efefef"
-    />
-{#each field as f, i}
-      <g transform="matrix(1,0,0,1,{1 * f.x * cx},{2 * f.y * cy})">
-        <use
-          x="{f.x}"
-          y="{(f.x % 2 === 1) ? (f.y + cy) : f.y}"
-          href="#hexagon" fill="{cellstate($statecolors, f.v)}"
-          stroke="#efefef" stroke-opacity="0.2"
-          on:click="click({x: f.x, y: f.y})"
-         />
-      </g>
-{/each}
-  </g>
-</svg>
-{/if}
+<div class="field-container">
+  {#if $fieldtype === 'hexagonal'}
+    <SVGField6 cx="86.66" cy="100" field={field} />
+  {/if} {#if $fieldtype === 'rectangular'}
+    <SVGField4 cx="50" cy="50" field={field} />
+  {/if}
+</div>
 
-{#if $fieldtype === 'rectangular'}
-<svg width="{$x * cx}" height="{$y * cy}">
-  <defs>
-    <rect
-      id="rectangle"
-      width={cx}
-      height={cy}
-    />
-  </defs>
-  <g>
-    {#each field as f, i}
-    <use
-      x="{f.x * cx}" y="{f.y * cy}"
-      href="#rectangle" fill="{cellstate($statecolors, f.v)}"
-      stroke="#efefef" stroke-opacity="0.2"
-      on:click="click({x: f.x, y: f.y})"
-    />
-    {/each}
-  </g>
-</svg>
-{/if}
 <span class="overview">
   <LabeledList elements="{
     {
@@ -54,17 +15,16 @@
       cx,
       cy,
     }
-    }"
-  />
+  }" />
   <div>
-  {#if $statecolors}
-  <ul>
+    {#if $statecolors}
+    <ul>
       {#each $statecolors as _s}
       <li>
         <span style="{`color: ${_s};`}">[{_s}]</span>
       </li> {/each}
-  </ul>
-  {/if}
+    </ul>
+    {/if}
   </div>
 </span>
 
@@ -77,12 +37,6 @@
     font-size: 0.5em;
   }
 
-  svg {
-    width: 70vw;
-    border: 1px solid white;
-  }
-
-
   ul {
     font-weight: 300;
     font-style: italic;
@@ -93,31 +47,35 @@
     display: block;
     float: left;
   }
+
+  .field-container {
+    width: 320px;
+    height: 320px;
+    overflow: hidden;
+    box-sizing: content-box;
+  }
 </style>
 
 <script>
-import LabeledList from './LabeledList.html'
-import { hexagonal } from '../../modules'
+  import LabeledList from './LabeledList.html'
+  import SVGField4 from './SVGField4.html'
+  import SVGField6 from './SVGField6.html'
+  // import Heptagon from './Heptagon.html'
 
-const { scale } = hexagonal
 
-export default {
-  data() {
-    return {
-      hexagon: scale(1),
+  export default {
+    oncreate() {
+      this.store.set({ size: 0.5 })
+    },
+    data() {
+      return {
+        field: [],
+      }
+    },
+    components: {
+      LabeledList,
+      SVGField4,
+      SVGField6,
     }
-  },
-  computed: {
-    hexagon: ({ size }) => scale(size)
-  },
-  helpers: {
-    cellstate: (colors, n) => n < colors.length ? colors[n] : colors[0]
-  },
-  methods: {
-    click: function ({ x, y }) { console.log(x, y) }
-  },
-  components: {
-    LabeledList,
   }
-}
 </script>

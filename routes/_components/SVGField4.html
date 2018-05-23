@@ -1,0 +1,34 @@
+<svg width="{$x * cx}" height="{$y * cy}">
+  <defs>
+    <rect id="rectangle" width="{cx * $size}" height="{cy * $size}" />
+  </defs>
+  <g>
+    {#each field as f, i}
+    <g transform="matrix(2,0,0,2,{f.x},{f.y})">
+      <use x="{f.x * cx * $size}" y="{f.y * cy * $size}"
+        href="#rectangle" fill="{cellstate($statecolors, f.v)}"
+        stroke="#efefef" stroke-opacity="0.2"
+        on:click="click({x: f.x, y: f.y})" />
+    </g>
+    {/each}
+  </g>
+</svg>
+
+<style>
+  svg {
+    width: 100%;
+    height: 500px;
+    border: 1px solid white;
+  }
+</style>
+
+<script>
+  export default {
+    methods: {
+      click: function ({ x, y }) { console.log(x, y) }
+    },
+    helpers: {
+      cellstate: (colors, n) => n < colors.length ? colors[n] : colors[0]
+    },
+  }
+</script>

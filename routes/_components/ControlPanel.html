@@ -13,7 +13,7 @@
     </button>
   </div>
   <div class="section">
-    <input on:click='$set({ fieldtype: $fieldtype === "rectangular"
+    <input class="min-width" on:click='$set({ fieldtype: $fieldtype === "rectangular"
      ? "hexagonal"
      : "rectangular"
     })' type="button" value="{$fieldtype}" />
@@ -28,6 +28,9 @@
   <div class="section">
     <input on:click='$set({ x: $x === 8 ? 16 : 8, y: $y === 8 ? 16 : 8 })'
       type="button" value="{`[${$x}x${$y}]`}" />
+  </div>
+  <div class="section">
+    <input on:click='$set({ size: $size === 0.5 ? 1 : 0.5 })' type="button" value="size: {$size}" />
   </div>
 </div>
 
@@ -54,5 +57,9 @@
 
   .section {
     border-left: 1px solid greenyellow;
+  }
+
+  .min-width {
+    width: 120px;
   }
 </style>

@@ -1,15 +1,6 @@
 <button on:click="generateField({ x: $x, y: $y, initializer: (n, i) => (n % i), field: [] })">initialize empty field</button>
 
-<CA id={id} name={name} field={field} type={algorithm.name} size="1" />
-
-<style>
-  div.games {
-    display: flex;
-    align-content: space-between;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-</style>
+<CA id={id} name={name} field={field} type={algorithm.name} />
 
 <script>
   import CA from './CA.html';

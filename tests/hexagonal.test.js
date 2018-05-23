@@ -10,12 +10,12 @@ const {
   field,
 } = hexagonal
 const deserializedHexagonPoints = [
-  [60, 26],
-  [45, 52],
-  [15, 52],
-  [0, 26],
-  [15, 0],
-  [45, 0],
+  [100, 50],
+  [75, 93.33333333333334],
+  [25, 93.33333333333334],
+  [0, 50],
+  [25, 6.666666666666667],
+  [75, 6.666666666666667],
 ]
 
 test('deserialize', t => {
@@ -39,7 +39,7 @@ test('generate points for a hexagon, with scale factor 1', t => {
 })
 
 test('generate points for a hexagon, with scale factor 5', t => {
-  t.is(scale(5), bigHexagonPoints)
+  t.is(scale(3), bigHexagonPoints)
 })
 
 test('field generator', t => {
