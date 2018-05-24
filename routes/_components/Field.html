@@ -1,9 +1,6 @@
 <div class="field-container">
-  {#if $fieldtype === 'hexagonal'}
-    <SVGField6 cx="86.66" cy="100" field={field} />
-  {/if} {#if $fieldtype === 'rectangular'}
-    <SVGField4 cx="50" cy="50" field={field} />
-  {/if}
+  {#if $fieldtype === 'hexagonal'}<SVGField6 cx="86.66" cy="100" field={field} />{/if}
+  {#if $fieldtype === 'rectangular'}<SVGField4 cx="50" cy="50" field={field} />{/if}
 </div>
 
 <span class="overview">
@@ -22,7 +19,8 @@
       {#each $statecolors as _s}
       <li>
         <span style="{`color: ${_s};`}">[{_s}]</span>
-      </li> {/each}
+      </li>
+      {/each}
     </ul>
     {/if}
   </div>
@@ -61,8 +59,6 @@
   import LabeledList from './LabeledList.html'
   import SVGField4 from './SVGField4.html'
   import SVGField6 from './SVGField6.html'
-  // import Heptagon from './Heptagon.html'
-
 
   export default {
     oncreate() {
