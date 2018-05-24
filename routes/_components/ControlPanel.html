@@ -1,5 +1,11 @@
 <div class="control-panel">
   <div class="section">
+    <input on:click="fire('init')" type="button" value="init" />
+  </div>
+  <div class="section">
+    <input on:click="fire('next')" type="button" value="next" />
+  </div>
+  <div class="section">
     <button on:click='$set({ stopped: !$stopped})'>
       {#if $stopped}
         <div>
@@ -33,6 +39,7 @@
     <input on:click='$set({ size: $size === 0.5 ? 1 : 0.5 })' type="button" value="size: {$size}" />
   </div>
 </div>
+<slot></slot>
 
 <style>
   button, input[type="button"] {

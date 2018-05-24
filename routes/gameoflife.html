@@ -1,25 +1,41 @@
 <svelte:head>
-	<title>Game of Life</title>
+  <title>Game of Life</title>
 </svelte:head>
 
 <div class="container">
-  <ControlPanel />
-  <GameofLife id="1"></GameofLife>
+  <ControlPanel on:next="next()" on:init="init()">
+    <GameofLife id="1"></GameofLife>
+  </ControlPanel>
 </div>
 
 <style>
-	.container {
-		width: 100%;
-	}
+  .container {
+    width: 100%;
+  }
 </style>
 <script>
-import ControlPanel from './_components/ControlPanel.html'
-import GameofLife from './_components/GameofLife.html';
+  import ControlPanel from './_components/ControlPanel.html'
+  import GameofLife from './_components/GameofLife.html';
+  import { GameofLifeDefault as defaults } from '../modules'
 
-export default {
-  components: {
-    ControlPanel,
-    GameofLife,
-  }
-};
+  export default {
+    oncreate() {
+      const { algorithm, fieldtype, name, statecolors, stati } = defaults
+      this.store.set({
+        algorithm,
+        fieldtype,
+        statecolors,
+        stati,
+        name,
+      })
+    },
+    components: {
+      ControlPanel,
+      GameofLife,
+    },
+    methods: {
+      next: () => console.log('neeext'),
+      init: () => console.log('iniiit'),
+    }
+  };
 </script>

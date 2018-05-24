@@ -1,47 +1,28 @@
-<button on:click="generateField({ x: $x, y: $y, initializer: (n, i) => (n % i), field: [] })">initialize empty field</button>
-
-<CA id={id} name={name} field={field} type={algorithm.name} />
+<CA {id} {type} on:next="nextIteration()" />
 
 <script>
   import CA from './CA.html';
-  import { GameofLifeDefault, hexagonal, rectangular } from '../../modules'
+  // let flicker = null
 
-  const [x, y] = [8, 8]
-  const field = []
-
-  const fieldGen = type => {
-    const _default = 'rectangular'
-    const generators = {
-      'hexagonal': hexagonal.field,
-      'rectangular': rectangular.field,
-    }
-    return (type in generators) ? generators[type] : generators[_default]
-  }
   export default {
     oncreate() {
       console.log('init GameofLife')
-      const { fieldtype, statecolors, stati } = GameofLifeDefault
-      this.store.set({
-        fieldtype,
-        statecolors,
-        stati,
-        x,
-        y,
-      })
+      const s = s =>
+        s.store.set({
+          fieldtype: s.store.get().fieldtype !== 'hexagonal' ? 'hexagonal' : 'rectangular'
+        })
+      // flicker = setInterval(s, 500, this)
     },
-    data() {
-      return Object.assign({
-        x,
-        y,
-        field
-      }, GameofLifeDefault)
+    ondestroy() {
+      // flicker.clearInterval()
+    },
+    computed: {
+      type: ({$algorithm}) => $algorithm && $algorithm.name || ''
     },
     methods: {
-      generateField: function ({ x, y, initializer, field }) {
-        const { statecolors: { length: states }, fieldtype } = this.store.get()
-        const f = fieldGen(fieldtype)(x, y, states, initializer)
-        this.set({ field: f })
-      }
+      nextIteration() {
+        console.log('triggered calculation of the next iteration step')
+      },
     },
     components: {
       CA,

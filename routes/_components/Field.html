@@ -1,6 +1,8 @@
+<button on:click="generateField({ x: $x, y: $y, initializer: (n, i) => (n % i), field: [] })">initialize empty field</button>
 <div class="field-container">
-  {#if $fieldtype === 'hexagonal'}<SVGField6 cx="86.66" cy="100" field={field} />{/if}
-  {#if $fieldtype === 'rectangular'}<SVGField4 cx="50" cy="50" field={field} />{/if}
+  {#if $fieldtype === 'hexagonal'}
+  <SVGField6 cx="86.66" cy="100" field={$field} /> {/if} {#if $fieldtype === 'rectangular'}
+  <SVGField4 cx="50" cy="50" field={$field} /> {/if}
 </div>
 
 <span class="overview">
@@ -9,8 +11,6 @@
       $x,
       $y,
       cells: $x * $y,
-      cx,
-      cy,
     }
   }" />
   <div>
@@ -25,7 +25,6 @@
     {/if}
   </div>
 </span>
-
 
 <style>
   span.overview {
@@ -59,15 +58,34 @@
   import LabeledList from './LabeledList.html'
   import SVGField4 from './SVGField4.html'
   import SVGField6 from './SVGField6.html'
+  import { hexagonal, rectangular } from '../../modules'
+
+  const [x, y] = [8, 8]
+
+  const fieldGen = type => {
+    const _default = 'rectangular'
+    const generators = {
+      'hexagonal': hexagonal.field,
+      'rectangular': rectangular.field,
+    }
+    return (type in generators) ? generators[type] : generators[_default]
+  }
 
   export default {
     oncreate() {
-      this.store.set({ size: 0.5 })
-    },
-    data() {
-      return {
+      this.store.set({
         field: [],
-      }
+        size: 0.5,
+        x: 8,
+        y: 8,
+      })
+    },
+    methods: {
+      generateField: function ({ x, y, initializer }) {
+        const { statecolors: { length: states }, fieldtype } = this.store.get()
+        const field = fieldGen(fieldtype)(x, y, states, initializer)
+        this.store.set({ field })
+      },
     },
     components: {
       LabeledList,

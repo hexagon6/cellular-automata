@@ -1,9 +1,6 @@
 <div class="container">
-<span>[{id} - {name}] {$fieldtype} CA of type: "{type}, [{$x}x{$y}] {$size}"</span>
-<Field
-  name="{name}"
-  field="{field}"
-/>
+  <span>[{id} - {$name}] {$fieldtype} CA of type: "{type}, [{$x}x{$y}] {$size}x [{$step}]"</span>
+  <Field  />
 </div>
 
 <style>
@@ -17,11 +14,6 @@
 import Field from './Field.html'
 
 export default {
-  data() {
-    return {
-      field: [],
-    }
-  },
   components: {
     Field,
   }
