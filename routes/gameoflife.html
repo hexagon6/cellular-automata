@@ -3,8 +3,8 @@
 </svelte:head>
 
 <div class="container">
-  <ControlPanel on:next="next()" on:init="init()">
-    <GameofLife id="1"></GameofLife>
+  <ControlPanel on:next="next()" on:init="init($x, $y)">
+    <CA id="1" {type} />
   </ControlPanel>
 </div>
 
@@ -14,9 +14,13 @@
   }
 </style>
 <script>
+  import CA from './_components/CA.html';
   import ControlPanel from './_components/ControlPanel.html'
-  import GameofLife from './_components/GameofLife.html';
-  import { GameofLifeDefault as defaults } from '../modules'
+  import { GameofLifeDefault as defaults, fieldGen, initializer, randomInitializer } from '../modules'
+
+  const naive = (field, states) => field.map(cell => (Object.assign(cell, {
+    v: (cell.v + 1) % states
+  })))
 
   export default {
     oncreate() {
@@ -29,13 +33,27 @@
         name,
       })
     },
+    computed: {
+      type: ({ $algorithm }) => $algorithm && $algorithm.name || ''
+    },
     components: {
+      CA,
       ControlPanel,
-      GameofLife,
     },
     methods: {
-      next: () => console.log('neeext'),
-      init: () => console.log('iniiit'),
+      next() {
+        console.log('next')
+        const { field, statecolors: { length: states }, fieldtype } = this.store.get()
+        this.store.set({
+          field: naive(field, states),
+        })
+      },
+      init(x, y) {
+        console.log('iniiit')
+        const { statecolors: { length: states }, fieldtype } = this.store.get()
+        const field = fieldGen(fieldtype)(x, y, states, randomInitializer)
+        this.store.set({ field })
+      }
     }
   };
 </script>
