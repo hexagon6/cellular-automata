@@ -71,7 +71,7 @@ test('count neighbours with condition', t => {
   )
 })
 
-test('count neighbours 3x3 with condition', t => {
+test('count dead neighbours on 3x3', t => {
   const { vneumann, moore } = neighborIn(3, 3)
   const cells = {
     '0x0': 0,
@@ -84,7 +84,25 @@ test('count neighbours 3x3 with condition', t => {
     '2x1': 0,
     '2x2': 0,
   }
-  const empty = v => v === 0,
+  const empty = v => v === 0
   t.is(countCells('1x1')(cells, empty, moore), 8)
   t.is(countCells('1x1')(cells, empty, vneumann), 4)
+})
+
+test('count alive neighbours on 3x3', t => {
+  const { vneumann, moore } = neighborIn(3, 3)
+  const cells = {
+    '0x0': 0,
+    '0x1': 1,
+    '0x2': 0,
+    '1x0': 0,
+    '1x1': 0,
+    '1x2': 0,
+    '2x0': 0,
+    '2x1': 0,
+    '2x2': 1,
+  }
+  const alive = v => v === 1
+  t.is(countCells('1x1')(cells, alive, moore), 2)
+  t.is(countCells('1x1')(cells, alive, vneumann), 1)
 })
