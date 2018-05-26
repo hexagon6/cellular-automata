@@ -19,6 +19,9 @@
     </button>
   </div>
   <div class="section">
+    <input class="min-width" on:click='toggleInterval($interval)' type="button" value="{`${$interval}ms`}" />
+  </div>
+  <div class="section">
     <input class="min-width" on:click='$set({ fieldtype: $fieldtype === "rectangular"
      ? "hexagonal"
      : "rectangular"
@@ -73,24 +76,39 @@
 
 <script>
   let timerHandle
+  const timer = function (t) {
+    if (t.store) {
+      const { stopped } = t.store.get()
+      if (!stopped) {
+        t.fire('next')
+      }
+    }
+  }
+  const defaultInterval = 1000
+  const fastInterval = 25
 
   export default {
     oncreate() {
+      const interval = defaultInterval
+      this.store.set({ interval })
       const autostart = (t) => t.fire('init')
       setTimeout(autostart, 200, this)
 
-      const timer = function (t) {
-        if (t.store) {
-          const { stopped } = t.store.get()
-          if (!stopped) {
-            t.fire('next')
-          }
-        }
-      }
-      timerHandle = setInterval(timer, 1000, this)
+
+      timerHandle = setInterval(timer, interval, this)
     },
     ondestroy() {
       clearInterval(timerHandle)
+    },
+    methods: {
+      toggleInterval(interval) {
+        const newInterval = interval === defaultInterval
+         ? fastInterval
+         : defaultInterval
+        this.store.set({ interval: newInterval })
+        clearInterval(timerHandle)
+        timerHandle = setInterval(timer, newInterval, this)
+      }
     }
   }
 </script>
