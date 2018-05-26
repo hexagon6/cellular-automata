@@ -10,8 +10,8 @@ export default {
     name: 'GoL',
   },
   field: [],
-  fieldtype: fieldtypes[0],
+  fieldtype: fieldtypes[1],
   fieldtypes,
-  statecolors: stati[0],
+  statecolors: stati[1],
   stati: stati,
 };

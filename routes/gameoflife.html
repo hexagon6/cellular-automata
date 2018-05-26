@@ -16,7 +16,7 @@
 <script>
   import CA from './_components/CA.html';
   import ControlPanel from './_components/ControlPanel.html'
-  import { GameofLifeDefault as defaults, fieldGen, initializer, randomInitializer, naive } from '../modules'
+  import { GameofLifeDefault as defaults, fieldGen, initializer, randomInitializer, naive, gol, listToDict, dictToList } from '../modules'
 
   export default {
     oncreate() {
@@ -39,9 +39,9 @@
     methods: {
       next() {
         console.log('next')
-        const { field, statecolors: { length: states }, fieldtype } = this.store.get()
+        const { field, statecolors: { length: states }, fieldtype, x, y } = this.store.get()
         this.store.set({
-          field: naive(field, states),
+          field: dictToList(gol(x, y)(listToDict(field))),
         })
       },
       init(x, y) {
