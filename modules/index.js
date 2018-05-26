@@ -4,6 +4,9 @@ import rectangular from './shapes/rectangular'
 import GameofLifeDefault from './stores/gameoflife'
 import WavesDefault from './stores/waves'
 
+import { getKeys, listToDict, dictToList } from './field/utils'
+import { neighborIn } from './field/rectangular/neighborhood'
+
 const algorithm = () => 0
 const naive = (field, states) =>
   field.map(cell =>
@@ -23,63 +26,6 @@ const fieldGen = type => {
     rectangular: rectangular.field,
   }
   return type in generators ? generators[type] : generators[_default]
-}
-
-const listToDict = list =>
-  list.reduce(
-    (acc, c) =>
-      Object.assign(acc, {
-        [`${c.x}x${c.y}`]: c.v,
-      }),
-    {}
-  )
-
-const dictToList = dict =>
-  Object.entries(dict).map(([key, v]) => {
-    const [x, y] = getKeys(key)
-    return {
-      x,
-      y,
-      v,
-    }
-  })
-
-const getKeys = key => key.split('x').map(Number)
-
-const neighborIn = (X_, Y_) => {
-  if (X_ === 0 || Y_ === 0) {
-    throw 'choose 1 instead of 0'
-  }
-  const left = n => (n - 1 + X_) % X_
-  const right = n => (n + 1) % X_
-  const up = n => (n - 1 + Y_) % Y_
-  const down = n => (n + 1) % Y_
-
-  const moore = (X, Y) => k => {
-    const [x, y] = getKeys(k)
-    if (typeof X_ === undefined) {
-      X_ = Infinity
-    }
-    if (typeof Y_ === undefined) {
-      Y_ = Infinity
-    }
-    const r = right(X) === x
-    const l = left(X) === x
-    const d = down(Y) === y
-    const u = up(Y) === y
-    const lr = l || r
-    const ud = u || d
-    const res = (lr && ud) || (X === x && ud) || (Y === y && lr)
-    return res
-  }
-
-  return {
-    moore,
-    left,
-    right,
-    up,
-    down,
-  }
 }
 
 const countCells = cellKey => (cells, condition, neighborhood) => {
