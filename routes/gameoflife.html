@@ -16,11 +16,7 @@
 <script>
   import CA from './_components/CA.html';
   import ControlPanel from './_components/ControlPanel.html'
-  import { GameofLifeDefault as defaults, fieldGen, initializer, randomInitializer } from '../modules'
-
-  const naive = (field, states) => field.map(cell => (Object.assign(cell, {
-    v: (cell.v + 1) % states
-  })))
+  import { GameofLifeDefault as defaults, fieldGen, initializer, randomInitializer, naive } from '../modules'
 
   export default {
     oncreate() {
