@@ -1,7 +1,8 @@
 import hexagonal from './shapes/hexagon'
 import rectangular from './shapes/rectangular'
 
-import { GameofLifeDefault, WavesDefault } from './stores'
+import GameofLifeDefault from './stores/gameoflife'
+import WavesDefault from './stores/waves'
 
 const algorithm = () => 0
 const naive = (field, states) =>
