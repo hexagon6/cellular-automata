@@ -55,7 +55,7 @@ test('moore in 3x3', t => {
 })
 
 test('count neighbours with condition', t => {
-  const { moore } = neighborIn(2, 2)
+  const { moore: nb } = neighborIn(2, 2)
   t.is(
     countCells('0x0')(
       {
@@ -65,10 +65,26 @@ test('count neighbours with condition', t => {
         '1x1': 0,
       },
       v => v === 0,
-      moore
+      nb
     ),
     3
   )
 })
 
-test.todo('get neighbors')
+test('count neighbours 3x3 with condition', t => {
+  const { vneumann, moore } = neighborIn(3, 3)
+  const cells = {
+    '0x0': 0,
+    '0x1': 0,
+    '0x2': 0,
+    '1x0': 0,
+    '1x1': 0,
+    '1x2': 0,
+    '2x0': 0,
+    '2x1': 0,
+    '2x2': 0,
+  }
+  const empty = v => v === 0,
+  t.is(countCells('1x1')(cells, empty, moore), 8)
+  t.is(countCells('1x1')(cells, empty, vneumann), 4)
+})
