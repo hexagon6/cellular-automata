@@ -1,10 +1,5 @@
 import test from 'ava'
-import {
-  naive,
-  naiveNB,
-  listToDict,
-  dictToList,
-} from '../modules/'
+import { naive, naiveNB, listToDict, dictToList } from '../modules/'
 
 const cellZero = { x: 0, y: 0, v: 0 }
 const cellOne = { x: 0, y: 0, v: 1 }

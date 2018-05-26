@@ -8,13 +8,13 @@
   <div class="section">
     <button on:click='$set({ stopped: !$stopped})'>
       {#if $stopped}
-        <div>
-          <span>⌛</span>
-        </div>
+      <div>
+        <span>⌛</span>
+      </div>
       {:else}
-        <div style="transform:rotate(180deg);">
-          <span>⌛</span>
-        </div>
+      <div style="transform:rotate(180deg);">
+        <span>⌛</span>
+      </div>
       {/if}
     </button>
   </div>
@@ -35,8 +35,7 @@
     })' type="button" value="{`${$statecolors ? $statecolors.length: 0} states`}" />
   </div>
   <div class="section">
-    <input on:click='$set({ x: $x === 8 ? 16 : 8, y: $y === 8 ? 16 : 8 })'
-      type="button" value="{`[${$x}x${$y}]`}" />
+    <input on:click='$set({ x: $x === 8 ? 16 : 8, y: $y === 8 ? 16 : 8 })' type="button" value="{`[${$x}x${$y}]`}" />
   </div>
   <div class="section">
     <input on:click='$set({ size: $size === 0.5 ? 1 : 0.5 })' type="button" value="size: {$size}" />
@@ -45,17 +44,19 @@
 <slot></slot>
 
 <style>
-  button, input[type="button"] {
+  button,
+  input[type="button"] {
     background-color: lightblue;
     border-radius: 6px;
     border-color: darkcyan;
   }
 
   /* style alternative state  */
-  button:d{
+
+  button:d {
     background-color: darkviolet;
   }
-  
+
   .control-panel {
     display: flex;
     justify-items: center;

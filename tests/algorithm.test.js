@@ -31,7 +31,6 @@ test('Naive algorithm', t => {
   t.deepEqual(naive([cellOne], 2), [cellZero])
 })
 
-
 test('Game of Life', t => {
   const cellsBefore = {
     '0x0': 0,
@@ -55,8 +54,8 @@ test('Game of Life', t => {
     '2x1': 0,
     '2x2': 0,
   }
-  t.deepEqual(gol(6,6)(cellsBefore), cellsAfter)
-  t.deepEqual(gol(6,6)(cellsAfter), cellsBefore)
+  t.deepEqual(gol(6, 6)(cellsBefore), cellsAfter)
+  t.deepEqual(gol(6, 6)(cellsAfter), cellsBefore)
 })
 
 test.todo('calculate new state based on neighbors')
