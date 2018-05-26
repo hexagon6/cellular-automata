@@ -1,5 +1,5 @@
 <svelte:head>
-  <title>Game of Life</title>
+  <title>Waves</title>
 </svelte:head>
 
 <div class="container">
@@ -14,8 +14,8 @@
   }
 </style>
 <script>
-  import CA from './_components/CA.html';
-  import ControlPanel from './_components/ControlPanel.html'
+  import CA from '../components/CA.html';
+  import ControlPanel from '../components/ControlPanel.html'
   import { WavesDefault as defaults, fieldGen, initializer, randomInitializer } from '../modules'
 
   export default {
