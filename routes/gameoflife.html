@@ -16,7 +16,7 @@
 <script>
   import CA from '../components/CA.html';
   import ControlPanel from '../components/ControlPanel.html'
-  import { GameofLifeDefault as defaults, fieldGen, initializer, randomInitializer, naive, gol, listToDict, dictToList } from '../modules'
+  import { GameofLifeDefault as defaults, fieldGen, initializer, randomInitializer, naive, listToDict, dictToList } from '../modules'
 
   export default {
     oncreate() {
@@ -30,7 +30,8 @@
       })
     },
     computed: {
-      type: ({ $algorithm }) => $algorithm && $algorithm.name || ''
+      type: ({ $algorithm }) => $algorithm && $algorithm.name || '',
+      run: ({ $algorithm, $fieldtype }) => $algorithm && $algorithm.run[$fieldtype]
     },
     components: {
       CA,
@@ -39,9 +40,10 @@
     methods: {
       next() {
         console.log('next')
+        const { run } = this.get()
         const { field, statecolors: { length: states }, fieldtype, x, y } = this.store.get()
         this.store.set({
-          field: dictToList(gol(x, y)(listToDict(field))),
+          field: dictToList(run(x, y)(listToDict(field))),
         })
       },
       init(x, y) {

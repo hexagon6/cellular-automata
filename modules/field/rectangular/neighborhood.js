@@ -33,7 +33,22 @@ export const neighborIn = (X_, Y_) => {
     return (X === x && ud) || (Y === y && lr)
   }
 
+  const hex = (X, Y) => k => { 
+    const [x, y] = getKeys(k)
+    const r = right(X) === x
+    const l = left(X) === x
+    const d = down(Y) === y
+    const u = up(Y) === y
+    const lr = l || r
+    const ud = u || d
+    const res = x % 2 === 0
+      ? ((lr && u) || (X === x && u) || (Y === y && lr))
+      : ((lr && d) || (X === x && d) || (Y === y && lr))
+    return res
+  }
+
   return {
+    hex,
     moore,
     vneumann,
     left,

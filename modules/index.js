@@ -6,7 +6,6 @@ import WavesDefault from './stores/waves'
 
 import { getKeys, listToDict, dictToList } from './field/utils'
 import { neighborIn } from './field/rectangular/neighborhood'
-import { gol } from './algorithms/gameoflife'
 
 const algorithm = () => 0
 const naive = (field, states) =>
@@ -61,5 +60,4 @@ export {
   dictToList,
   countCells,
   neighborIn,
-  gol,
 }
