@@ -4,7 +4,7 @@ describe('Sapper cellular automata', () => {
   })
 
   it('has the correct <h1>', () => {
-    cy.contains('h1', 'Great success!')
+    cy.contains('h1', 'CELLULAR AUTOMATA!')
   })
 
   it('navigates to /gameoflife', () => {
