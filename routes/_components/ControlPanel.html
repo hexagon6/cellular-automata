@@ -70,3 +70,27 @@
     width: 120px;
   }
 </style>
+
+<script>
+  let timerHandle
+
+  export default {
+    oncreate() {
+      const autostart = (t) => t.fire('init')
+      setTimeout(autostart, 200, this)
+
+      const timer = function (t) {
+        if (t.store) {
+          const { stopped } = t.store.get()
+          if (!stopped) {
+            t.fire('next')
+          }
+        }
+      }
+      timerHandle = setInterval(timer, 1000, this)
+    },
+    ondestroy() {
+      clearInterval(timerHandle)
+    }
+  }
+</script>
