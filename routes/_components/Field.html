@@ -1,7 +1,7 @@
 <div class="field-container">
   {#if $fieldtype === 'hexagonal'}
-  <SVGField6 cx="86.66" cy="100" field={$field} /> {/if} {#if $fieldtype === 'rectangular'}
-  <SVGField4 cx="50" cy="50" field={$field} /> {/if}
+  <SVGField6 cx="86.66" cy="100" field={$field} on:cell="cell(event)" /> {/if} {#if $fieldtype === 'rectangular'}
+  <SVGField4 cx="50" cy="50" field={$field} on:cell="cell(event)" /> {/if}
 </div>
 
 <span class="overview">
@@ -57,6 +57,7 @@
   import LabeledList from './LabeledList.html'
   import SVGField4 from './SVGField4.html'
   import SVGField6 from './SVGField6.html'
+  import { listToDict, dictToList } from '../../modules'
 
   export default {
     oncreate() {
@@ -71,6 +72,16 @@
       LabeledList,
       SVGField4,
       SVGField6,
+    },
+    methods: {
+      cell({ x, y, s }) { 
+        console.log(s)
+        const { field } = this.store.get()
+        const f = listToDict(field)
+        const c = `${x}x${y}`
+        f[c] = (f[c] + 1) % s
+        this.store.set({ field: dictToList(f) })
+      }
     }
   }
 </script>

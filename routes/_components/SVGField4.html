@@ -6,7 +6,7 @@
   <g>
     {#each field as f, i}
     <g transform="matrix(2,0,0,2,{f.x},{f.y})">
-      <use x="{f.x * cx * $size}" y="{f.y * cy * $size}" href="#rectangle" fill="{cellstate($statecolors, f.v)}" on:click="click({x: f.x, y: f.y})"
+      <use x="{f.x * cx * $size}" y="{f.y * cy * $size}" href="#rectangle" fill="{cellstate($statecolors, f.v)}" on:click="fire('cell', {x: f.x, y: f.y, s: $statecolors.length})"
       />
     </g>
     {/each}
@@ -23,9 +23,6 @@
 
 <script>
   export default {
-    methods: {
-      click: function ({ x, y }) { console.log(x, y) }
-    },
     helpers: {
       cellstate: (colors, n) => n < colors.length ? colors[n] : colors[0]
     },

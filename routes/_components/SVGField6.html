@@ -15,7 +15,8 @@
         x="{$size * circle.offset}"
         y="{$size * (circle.offset + ((f.x % 2 === 1) ? 6.66: 50))}"
       /> -->
-      <use href="#hexagon" fill="{cellstate($statecolors, f.v)}" x="{0}" y="{(f.x % 2 === 1) ? 6.66 * $size : 50 * $size}" on:click="click({x: f.x, y: f.y})"
+      <use href="#hexagon" fill="{cellstate($statecolors, f.v)}" x="{0}" y="{(f.x % 2 === 1) ? 6.66 * $size : 50 * $size}"
+      on:click="fire('cell', {x: f.x, y: f.y, s: $statecolors.length})"
       />
     </g>
     {/each}
@@ -45,9 +46,6 @@
     },
     computed: {
       hexagon: ({ $size }) => scale($size)
-    },
-    methods: {
-      click: function ({ x, y }) { console.log(x, y) }
     },
     helpers: {
       cellstate: (colors, n) => n < colors.length ? colors[n] : colors[0]
