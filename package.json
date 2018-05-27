@@ -1,7 +1,7 @@
 {
   "name": "@hexagon6/sapper-cellular-automata",
   "description": "Cellular Automata built with svelte app maker",
-  "version": "0.0.1-alpha.7",
+  "version": "0.0.1-alpha.8",
   "scripts": {
     "dev": "PORT=3030 sapper dev",
     "build": "sapper build",
@@ -20,23 +20,23 @@
   },
   "dependencies": {
     "compression": "^1.7.1",
-    "esm": "^3.0.19",
-    "npm-run-all": "^4.1.2",
-    "polka": "^0.3.4",
+    "esm": "^3.0.38",
+    "npm-run-all": "^4.1.3",
+    "polka": "^0.4.0",
     "sapper": "^0.12.0",
     "serve-static": "^1.13.1",
-    "svelte": "^2.0.0",
-    "svelte-loader": "^2.3.3",
-    "webpack": "^4.8.3"
+    "svelte": "^2.6.6",
+    "svelte-loader": "^2.9.1",
+    "webpack": "^4.9.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.0.0-beta.44",
-    "@babel/preset-env": "^7.0.0-beta.44",
-    "@babel/register": "^7.0.0-beta.44",
+    "@babel/core": "^7.0.0-beta.49",
+    "@babel/preset-env": "^7.0.0-beta.49",
+    "@babel/register": "^7.0.0-beta.49",
     "ava": "^1.0.0-beta.4",
-    "codecov": "^3.0.1",
-    "nyc": "^11.7.3",
-    "prettier": "1.11.1"
+    "codecov": "^3.0.2",
+    "nyc": "^11.8.0",
+    "prettier": "^1.12.1"
   },
   "ava": {
     "files": [
