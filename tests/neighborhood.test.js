@@ -2,6 +2,7 @@ import test from 'ava'
 import { naiveNB, countCells, neighborIn } from '../modules/'
 
 test('directions', t => {
+  t.throws(() => { neighborIn(0, 0) }, 'choose 1 instead of 0')
   const nb2 = neighborIn(2, 2)
   const nb3 = neighborIn(3, 3)
   const left2 = nb2.left
@@ -90,7 +91,7 @@ test('count dead neighbours on 3x3', t => {
 })
 
 test('count alive neighbours on 3x3', t => {
-  const { vneumann, moore } = neighborIn(3, 3)
+  const { vneumann, moore, hex } = neighborIn(4, 4)
   const cells = {
     '0x0': 0,
     '0x1': 1,
@@ -105,4 +106,59 @@ test('count alive neighbours on 3x3', t => {
   const alive = v => v === 1
   t.is(countCells('1x1')(cells, alive, moore), 2)
   t.is(countCells('1x1')(cells, alive, vneumann), 1)
+  t.is(countCells('1x1')(cells, alive, hex), 1)
+  t.is(countCells('0x0')(cells, alive, hex), 1)
+  t.is(countCells('1x0')(cells, alive, hex), 0)
+})
+
+test('count neighbours on hex neighborhood', t => {
+  const { hex } = neighborIn(6, 6)
+  const cells = {
+    '0x0': 1,
+    '0x1': 1,
+    '0x2': 1,
+    '0x3': 1,
+    '1x0': 1,
+    '1x1': 1,
+    '1x2': 1,
+    '1x3': 1,
+    '2x0': 1,
+    '2x1': 1,
+    '2x2': 1,
+    '2x3': 1,
+    '3x0': 1,
+    '3x1': 1,
+    '3x2': 1,
+    '3x3': 1,
+  }
+  const alive = v => v === 1
+  t.is(countCells('1x1')(cells, alive, hex), 6)
+  t.is(countCells('2x2')(cells, alive, hex), 6)
+})
+
+test('count neighbours on hex neighborhood 2', t => {
+  const { hex } = neighborIn(6, 6)
+  const cells = {
+    '0x0': 1,
+    '0x1': 1,
+    '0x2': 1,
+    '0x3': 1,
+    '1x0': 1,
+    '1x1': 1,
+    '1x2': 1,
+    '1x3': 1,
+    '2x0': 1,
+    '2x1': 0,
+    '2x2': 1,
+    '2x3': 1,
+    '3x0': 1,
+    '3x1': 1,
+    '3x2': 1,
+    '3x3': 1,
+  }
+  const alive = v => v === 1
+  t.is(countCells('1x1')(cells, alive, hex), 5)
+  t.is(countCells('2x1')(cells, alive, hex), 6)
+  t.is(countCells('3x1')(cells, alive, hex), 3)
+  t.is(countCells('1x3')(cells, alive, hex), 5)
 })
