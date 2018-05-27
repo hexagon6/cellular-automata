@@ -8,6 +8,7 @@ export default {
   name: 'Waves',
   algorithm: {
     name: 'Waves',
+    run: () => { },
   },
   field: [],
   fieldtype: fieldtypes[0],
