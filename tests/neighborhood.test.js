@@ -1,8 +1,10 @@
 import test from 'ava'
-import { naiveNB, countCells, neighborIn } from '../modules/'
+import { countCells, neighborIn } from '../modules/'
 
 test('directions', t => {
-  t.throws(() => { neighborIn(0, 0) }, 'choose 1 instead of 0')
+  t.throws(() => {
+    neighborIn(0, 0)
+  }, 'choose 1 instead of 0')
   const nb2 = neighborIn(2, 2)
   const nb3 = neighborIn(3, 3)
   const left2 = nb2.left

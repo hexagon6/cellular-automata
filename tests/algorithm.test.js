@@ -1,5 +1,5 @@
 import test from 'ava'
-import { naive, naiveNB, countCells } from '../modules/'
+import { naive, countCells } from '../modules/'
 import { gol, golHex } from '../modules/algorithms/gameoflife'
 
 const cellZero = { x: 0, y: 0, v: 0 }

@@ -15,10 +15,6 @@ const naive = (field, states) =>
     })
   )
 
-const naiveNB = (field, states, neighborhood) => {
-  return field
-}
-
 const fieldGen = type => {
   const _default = 'rectangular'
   const generators = {
@@ -55,7 +51,6 @@ export {
   initializer,
   randomInitializer,
   naive,
-  naiveNB,
   listToDict,
   dictToList,
   countCells,
