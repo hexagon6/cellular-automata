@@ -10,7 +10,7 @@ env:
     - BASE_URL=sapper-cellular-automata
     - CYPRESS_BASE_URL=http://localhost:3030/$BASE_URL
 before_install:
-  - npm i -g npm@6
+  - npm i -g npm@latest
 install:
   - npm ci
 jobs:
