@@ -38,7 +38,7 @@
     <input on:click='$set({ x: $x === 8 ? 16 : 8, y: $y === 8 ? 16 : 8 })' type="button" value="{`[${$x}x${$y}]`}" />
   </div>
   <div class="section">
-    <input on:click='$set({ size: $size === 0.5 ? 1 : 0.5 })' type="button" value="size: {$size}" />
+    <input on:click='$set({ size: $size === 0.5 ? 0.25 : 0.5 })' type="button" value="size: {$size}" />
   </div>
 </div>
 <slot></slot>
