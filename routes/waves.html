@@ -13,10 +13,13 @@
     width: 100%;
   }
 </style>
+
 <script>
   import CA from '../components/CA.html';
   import ControlPanel from '../components/ControlPanel.html'
-  import { WavesDefault as defaults, fieldGen, initializer, randomInitializer } from '../modules'
+  import { WavesDefault as defaults, fieldGen, initializer, listToDict, dictToList } from '../modules'
+
+  const dropsInit = (n, i) => Math.random() > 0.9 ? 1 : 0
 
   export default {
     oncreate() {
@@ -30,18 +33,25 @@
       })
     },
     computed: {
-      type: ({ $algorithm }) => $algorithm && $algorithm.name || ''
+      type: ({ $algorithm }) => $algorithm && $algorithm.name || '',
+      run: ({ $algorithm, $fieldtype }) => $algorithm && $algorithm.run[$fieldtype]
     },
     components: {
       CA,
       ControlPanel,
     },
     methods: {
-      next: () => console.log('neeext'),
+      next() {
+        const { run } = this.get()
+        const { field, statecolors: { length: states }, fieldtype, x, y } = this.store.get()
+        this.store.set({
+          field: dictToList(run(x, y)(listToDict(field))),
+        })
+      },
       init(x, y) {
         console.log('iniiit')
         const { statecolors: { length: states }, fieldtype } = this.store.get()
-        const field = fieldGen(fieldtype)(x, y, states, randomInitializer)
+        const field = fieldGen(fieldtype)(x, y, states, dropsInit)
         this.store.set({ field })
       }
     }

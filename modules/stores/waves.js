@@ -1,18 +1,23 @@
+import { waves, wavesHex } from '../algorithms/waves'
+
 const fieldtypes = ['hexagonal', 'rectangular']
 const stati = [
+  ['#ffffff', '#dfdfdf', '#efefef'],
   ['#ff6738', '#18c8ff', '#efaf03', '#60f370'],
-  ['#ffffff', '#efefef'],
 ]
 
 export default {
   name: 'Waves',
   algorithm: {
     name: 'Waves',
-    run: () => { },
+    run: {
+      rectangular: waves,
+      hexagonal: wavesHex,
+    },
   },
   field: [],
-  fieldtype: fieldtypes[0],
+  fieldtype: fieldtypes[1],
   fieldtypes,
   statecolors: stati[0],
   stati: stati,
-};
+}

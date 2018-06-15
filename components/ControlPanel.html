@@ -27,13 +27,18 @@
      : "rectangular"
     })' type="button" value="{$fieldtype}" />
   </div>
+  <!--
+    TODO: make a color profile / state selection component
+    FIXME: switcher with many different states, not only 2
+  -->
+  <!--
   <div class="section">
-    <!-- TODO: make a color profile / state selection component -->
-    <input on:click='$set({ statecolors: $statecolors.length === 2
+    <input on:click='$set({ statecolors: $statecolors.length === 3
       ? $stati[0]
       : $stati[1]
     })' type="button" value="{`${$statecolors ? $statecolors.length: 0} states`}" />
   </div>
+  -->
   <div class="section">
     <input on:click='$set({ x: $x === 8 ? 16 : 8, y: $y === 8 ? 16 : 8 })' type="button" value="{`[${$x}x${$y}]`}" />
   </div>
