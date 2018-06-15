@@ -19,7 +19,7 @@
     </button>
   </div>
   <div class="section">
-    <input class="min-width" on:click='toggleInterval($interval)' type="button" value="{`${$interval}ms`}" />
+    <input class="min-width" on:click='toggleInterval($interval)' type="button" value="{`${$interval && $interval.name}`}" />
   </div>
   <div class="section">
     <input class="min-width" on:click='$set({ fieldtype: $fieldtype === "rectangular"
@@ -85,8 +85,14 @@
       }
     }
   }
-  const defaultInterval = 1000
-  const fastInterval = 25
+  const defaultInterval = {
+    ms: 1000,
+    name: 'slow',
+  }
+  const fastInterval = {
+    ms: 25,
+    name: 'fast',
+  }
 
   export default {
     oncreate() {
@@ -96,19 +102,19 @@
       setTimeout(autostart, 200, this)
 
 
-      timerHandle = setInterval(timer, interval, this)
+      timerHandle = setInterval(timer, interval.ms, this)
     },
     ondestroy() {
       clearInterval(timerHandle)
     },
     methods: {
       toggleInterval(interval) {
-        const newInterval = interval === defaultInterval
+        const newInterval = interval.ms === defaultInterval.ms
          ? fastInterval
          : defaultInterval
         this.store.set({ interval: newInterval })
         clearInterval(timerHandle)
-        timerHandle = setInterval(timer, newInterval, this)
+        timerHandle = setInterval(timer, newInterval.ms, this)
       }
     }
   }
