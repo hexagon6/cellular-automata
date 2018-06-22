@@ -81,6 +81,8 @@
 </style>
 
 <script>
+  import { increase, mapIterator as intervalIterator } from '../modules'
+
   let timerHandle
   const timer = function (t) {
     if (t.store) {
@@ -90,18 +92,33 @@
       }
     }
   }
-  const defaultInterval = {
-    ms: 1000,
-    name: 'slow',
-  }
-  const fastInterval = {
-    ms: 25,
-    name: 'fast',
-  }
+
+  const intervals = intervalIterator([
+    {
+      _id: 0,
+      ms: 1000,
+      name: 'slow',
+    },
+    {
+      _id: 1,
+      ms: 500,
+      name: 'normal',
+    },
+    {
+      _id: 2,
+      ms: 250,
+      name: 'fast',
+    },
+    {
+      _id: 3,
+      ms: 100,
+      name: 'superfast',
+    }
+  ])
 
   export default {
     oncreate() {
-      const interval = defaultInterval
+      const interval = intervals.next()
       this.store.set({ interval })
       const autostart = (t) => t.fire('init')
       setTimeout(autostart, 200, this)
@@ -111,15 +128,14 @@
     },
     ondestroy() {
       clearInterval(timerHandle)
+      // FIXME: don't forget to reset intervals to initial state somehow as it is a generator..
     },
     methods: {
-      toggleInterval(interval) {
-        const newInterval = interval.ms === defaultInterval.ms
-         ? fastInterval
-         : defaultInterval
-        this.store.set({ interval: newInterval })
+      toggleInterval(currentInterval) {
+        const interval = intervals.next()
+        this.store.set({ interval })
         clearInterval(timerHandle)
-        timerHandle = setInterval(timer, newInterval.ms, this)
+        timerHandle = setInterval(timer, interval.ms, this)
       }
     }
   }
