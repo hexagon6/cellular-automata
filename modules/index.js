@@ -7,6 +7,8 @@ import WavesDefault from './stores/waves'
 import { getKeys, listToDict, dictToList } from './field/utils'
 import { neighborIn } from './field/rectangular/neighborhood'
 
+import { increase, mapIterator } from './utils/mapiterator'
+
 const algorithm = () => 0
 const naive = (field, states) =>
   field.map(cell =>
@@ -44,6 +46,8 @@ const randomInitializer = (n, i) => Math.floor(Math.random() * n) % i
 export {
   algorithm,
   hexagonal,
+  increase,
+  mapIterator,
   rectangular,
   GameofLifeDefault,
   WavesDefault,
