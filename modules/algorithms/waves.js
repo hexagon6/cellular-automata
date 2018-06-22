@@ -18,11 +18,13 @@ export const waves = (x, y) => cells => {
 
 // TODO: change gol to waves implementation!
 export const wavesHex = (x, y) => cells => {
-  const { hex } = neighborIn(x, y)
+  const { hex: neighborhood } = neighborIn(x, y)
   return Object.keys(cells)
     .map(k => {
-      const n = countCells(k)(cells, alive, hex)
-      return { [k]: n === 2 ? cells[k] : n > 2 && n < 4 ? 1 : 0 }
+      const n = countCells(k)(cells, excited, neighborhood)
+      const state = cells[k]
+      const newState = n > 0 || state > 0 ? (state + 1) % 3 : state
+      return { [k]: newState }
     })
     .reduce((a, c) => Object.assign(a, c), {})
 }

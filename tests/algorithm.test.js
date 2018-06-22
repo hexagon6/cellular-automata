@@ -138,3 +138,55 @@ test('Waves 2', t => {
   }
   t.deepEqual(waves(3,3)(cellsBefore), cellsAfter)
 })
+
+test('Waves hex', t => {
+  const cellsBefore = {
+    '0x0': 0,
+    '0x1': 0,
+    '0x2': 0,
+    '1x0': 0,
+    '1x1': 1,
+    '1x2': 0,
+    '2x0': 0,
+    '2x1': 0,
+    '2x2': 0,
+  }
+  const cellsAfter = {
+    '0x0': 1,
+    '0x1': 1,
+    '0x2': 0,
+    '1x0': 1,
+    '1x1': 2,
+    '1x2': 1,
+    '2x0': 1,
+    '2x1': 1,
+    '2x2': 0,
+  }
+  t.deepEqual(wavesHex(3,3)(cellsBefore), cellsAfter)
+})
+
+test('Waves hex 2', t => {
+  const cellsBefore = {
+    '1x0': 0,
+    '1x1': 0,
+    '1x2': 0,
+    '2x0': 0,
+    '2x1': 1,
+    '2x2': 0,
+    '3x0': 0,
+    '3x1': 0,
+    '3x2': 0,
+  }
+  const cellsAfter = {
+    '1x0': 0,
+    '1x1': 1,
+    '1x2': 1,
+    '2x0': 1,
+    '2x1': 2,
+    '2x2': 1,
+    '3x0': 0,
+    '3x1': 0,
+    '3x2': 0,
+  }
+  t.deepEqual(wavesHex(3, 3)(cellsBefore), cellsAfter)
+})
