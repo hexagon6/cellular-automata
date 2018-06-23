@@ -6,10 +6,7 @@
     <input on:click="fire('init')" type="button" value="init" />
   </div>
   <div class="section">
-    <input class="min-width" on:click='$set({ fieldtype: $fieldtype === "rectangular"
-     ? "hexagonal"
-     : "rectangular"
-    })' type="button" value="{$fieldtype}" />
+    <FieldType />
   </div>
   <div class="section">
     <input on:click="fire('next')" type="button" value="next" />
@@ -79,6 +76,7 @@
 
 <script>
   import FieldResize from './controls/FieldResize.html'
+  import FieldType from './controls/FieldType.html'
   import { increase, mapIterator } from '../modules'
 
   let timerHandle
@@ -137,6 +135,7 @@
       },
     components: {
       FieldResize,
+      FieldType,
     }
   }
 </script>
