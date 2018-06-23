@@ -1,6 +1,14 @@
 import { waves, wavesHex } from '../algorithms/waves'
+import { mapIterator } from '../utils/mapiterator'
 
-const fieldtypes = ['hexagonal', 'rectangular']
+const fieldtypes = mapIterator([
+  {
+    fieldtype: 'rectangular'
+  }, {
+    fieldtype: 'hexagonal'
+  }
+], 1)
+
 const stati = [
   ['#ffffff', '#dfdfdf', '#efefef'],
   ['#ff6738', '#18c8ff', '#efaf03', '#60f370'],
@@ -16,7 +24,6 @@ export default {
     },
   },
   field: [],
-  fieldtype: fieldtypes[1],
   fieldtypes,
   statecolors: stati[0],
   stati: stati,

@@ -20,10 +20,12 @@
 
   export default {
     oncreate() {
-      const { algorithm, fieldtype, name, statecolors, stati } = defaults
+      const { algorithm, fieldtypes, name, statecolors, stati } = defaults
+      const { fieldtype } = fieldtypes.next()
       this.store.set({
         algorithm,
         fieldtype,
+        fieldtypes,
         statecolors,
         stati,
         name,
