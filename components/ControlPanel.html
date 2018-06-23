@@ -25,7 +25,7 @@
     </button>
   </div>
   <div class="section">
-    <input on:click='toggleInterval($interval)' type="button" value="{`${$interval && $interval.name}`}" />
+    <Interval on:next="fire('next')" />
   </div>
   <!--
     TODO: make a color profile / state selection component
@@ -77,65 +77,18 @@
 <script>
   import FieldResize from './controls/FieldResize.html'
   import FieldType from './controls/FieldType.html'
-  import { increase, mapIterator } from '../modules'
-
-  let timerHandle
-  const timer = function (t) {
-    if (t.store) {
-      const { stopped } = t.store.get()
-      if (!stopped) {
-        t.fire('next')
-      }
-    }
-  }
-
-  const intervals = mapIterator([
-    {
-      _id: 0,
-      ms: 1000,
-      name: 'slow',
-    },
-    {
-      _id: 1,
-      ms: 500,
-      name: 'normal',
-    },
-    {
-      _id: 2,
-      ms: 250,
-      name: 'fast',
-    },
-    {
-      _id: 3,
-      ms: 100,
-      name: 'superfast',
-    }
-  ])
+  import Interval from './controls/Interval.html'
 
   export default {
     oncreate() {
-      const interval = intervals.next()
-      this.store.set({ interval })
+      this.store.set({ stopped: false })
       const autostart = t => t.fire('init')
       setTimeout(autostart, 200, this)
-
-      timerHandle = setInterval(timer, interval.ms, this)
-    },
-    ondestroy() {
-      clearInterval(timerHandle)
-      // FIXME: don't forget to reset intervals to initial state somehow as it is a generator..
-    },
-    methods: {
-      toggleInterval(currentInterval) {
-        const interval = intervals.next()
-        this.store.set({ interval })
-        clearInterval(timerHandle)
-        timerHandle = setInterval(timer, interval.ms, this)
-      },
       },
     components: {
       FieldResize,
       FieldType,
+      Interval,
     }
   }
 </script>
