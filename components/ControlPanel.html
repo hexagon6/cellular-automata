@@ -1,6 +1,12 @@
 <div class="control-panel">
   <div class="section">
+    <FieldResize />
+  </div>
+  <div class="section">
     <input on:click="fire('init')" type="button" value="init" />
+  </div>
+  <div class="section">
+    <FieldType />
   </div>
   <div class="section">
     <input on:click="fire('next')" type="button" value="next" />
@@ -19,13 +25,7 @@
     </button>
   </div>
   <div class="section">
-    <input class="min-width" on:click='toggleInterval($interval)' type="button" value="{`${$interval && $interval.name}`}" />
-  </div>
-  <div class="section">
-    <input class="min-width" on:click='$set({ fieldtype: $fieldtype === "rectangular"
-     ? "hexagonal"
-     : "rectangular"
-    })' type="button" value="{$fieldtype}" />
+    <Interval on:next="fire('next')" />
   </div>
   <!--
     TODO: make a color profile / state selection component
@@ -39,18 +39,12 @@
     })' type="button" value="{`${$statecolors ? $statecolors.length: 0} states`}" />
   </div>
   -->
-  <div class="section">
-    <input on:click='$set({ x: $x === 8 ? 16 : 8, y: $y === 8 ? 16 : 8 })' type="button" value="{`[${$x}x${$y}]`}" />
-  </div>
-  <div class="section">
-    <input on:click='$set({ size: $size === 0.5 ? 0.25 : 0.5 })' type="button" value="size: {$size}" />
-  </div>
 </div>
 <slot></slot>
 
 <style>
-  button,
-  input[type="button"] {
+  div :global(button,
+  input[type="button"]) {
     background-color: lightblue;
     border-radius: 6px;
     border-color: darkcyan;
@@ -74,69 +68,23 @@
   .section {
     border-left: 1px solid greenyellow;
   }
-
-  .min-width {
-    width: 100px;
-  }
 </style>
 
 <script>
-  import { increase, mapIterator } from '../modules'
-
-  let timerHandle
-  const timer = function (t) {
-    if (t.store) {
-      const { stopped } = t.store.get()
-      if (!stopped) {
-        t.fire('next')
-      }
-    }
-  }
-
-  const intervals = mapIterator([
-    {
-      _id: 0,
-      ms: 1000,
-      name: 'slow',
-    },
-    {
-      _id: 1,
-      ms: 500,
-      name: 'normal',
-    },
-    {
-      _id: 2,
-      ms: 250,
-      name: 'fast',
-    },
-    {
-      _id: 3,
-      ms: 100,
-      name: 'superfast',
-    }
-  ])
+  import FieldResize from './controls/FieldResize.html'
+  import FieldType from './controls/FieldType.html'
+  import Interval from './controls/Interval.html'
 
   export default {
     oncreate() {
-      const interval = intervals.next()
-      this.store.set({ interval })
-      const autostart = (t) => t.fire('init')
+      this.store.set({ stopped: false })
+      const autostart = t => t.fire('init')
       setTimeout(autostart, 200, this)
-
-
-      timerHandle = setInterval(timer, interval.ms, this)
-    },
-    ondestroy() {
-      clearInterval(timerHandle)
-      // FIXME: don't forget to reset intervals to initial state somehow as it is a generator..
-    },
-    methods: {
-      toggleInterval(currentInterval) {
-        const interval = intervals.next()
-        this.store.set({ interval })
-        clearInterval(timerHandle)
-        timerHandle = setInterval(timer, interval.ms, this)
-      }
+      },
+    components: {
+      FieldResize,
+      FieldType,
+      Interval,
     }
   }
 </script>

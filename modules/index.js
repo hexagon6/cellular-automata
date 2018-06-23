@@ -8,6 +8,7 @@ import { getKeys, listToDict, dictToList } from './field/utils'
 import { neighborIn } from './field/rectangular/neighborhood'
 
 import { increase, mapIterator } from './utils/mapiterator'
+import { timer } from './utils/timer'
 
 const algorithm = () => 0
 const naive = (field, states) =>
@@ -48,6 +49,7 @@ export {
   hexagonal,
   increase,
   mapIterator,
+  timer,
   rectangular,
   GameofLifeDefault,
   WavesDefault,

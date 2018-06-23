@@ -1,0 +1,13 @@
+<input on:click='toggleFieldType()' type="button" value="{$fieldtype}" />
+
+<script>
+  export default {
+    methods: {
+      toggleFieldType() {
+        const { fieldtypes } = this.store.get()
+        const { fieldtype } = fieldtypes.next()
+        this.store.set({ fieldtype })
+      },
+    }
+  }
+</script>
