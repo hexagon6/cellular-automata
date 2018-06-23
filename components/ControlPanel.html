@@ -81,7 +81,7 @@
 </style>
 
 <script>
-  import { increase, mapIterator as intervalIterator } from '../modules'
+  import { increase, mapIterator } from '../modules'
 
   let timerHandle
   const timer = function (t) {
@@ -93,7 +93,7 @@
     }
   }
 
-  const intervals = intervalIterator([
+  const intervals = mapIterator([
     {
       _id: 0,
       ms: 1000,
