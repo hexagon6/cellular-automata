@@ -3,21 +3,22 @@
 <script>
   import { mapIterator } from '../../modules'
 
-  const fieldsizes = mapIterator([
-    {
-      x: 8, y: 8, size: 0.5,
-    }, {
-      x: 16, y: 16, size: 0.25,
-    }
-  ])
-
   export default {
     oncreate() {
+      const fieldsizes = mapIterator([
+        {
+          x: 8, y: 8, size: 0.5,
+        }, {
+          x: 16, y: 16, size: 0.25,
+        }
+      ], 0)
+
       const { x, y, size } = fieldsizes.next()
-      this.store.set({ x, y, size })
+      this.store.set({ x, y, size, fieldsizes })
     },
     methods: {
       toggleFieldResize() {
+        const { fieldsizes } = this.store.get()
         const fieldsize = fieldsizes.next()
         this.store.set({ ...fieldsize })
       },
