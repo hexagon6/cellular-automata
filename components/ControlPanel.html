@@ -1,6 +1,15 @@
 <div class="control-panel">
   <div class="section">
+    <input on:click='toggleFieldResize()' type="button" value="{`[${$x}x${$y}]`}" />
+  </div>
+  <div class="section">
     <input on:click="fire('init')" type="button" value="init" />
+  </div>
+  <div class="section">
+    <input class="min-width" on:click='$set({ fieldtype: $fieldtype === "rectangular"
+     ? "hexagonal"
+     : "rectangular"
+    })' type="button" value="{$fieldtype}" />
   </div>
   <div class="section">
     <input on:click="fire('next')" type="button" value="next" />
@@ -19,13 +28,7 @@
     </button>
   </div>
   <div class="section">
-    <input class="min-width" on:click='toggleInterval($interval)' type="button" value="{`${$interval && $interval.name}`}" />
-  </div>
-  <div class="section">
-    <input class="min-width" on:click='$set({ fieldtype: $fieldtype === "rectangular"
-     ? "hexagonal"
-     : "rectangular"
-    })' type="button" value="{$fieldtype}" />
+    <input on:click='toggleInterval($interval)' type="button" value="{`${$interval && $interval.name}`}" />
   </div>
   <!--
     TODO: make a color profile / state selection component
@@ -39,12 +42,6 @@
     })' type="button" value="{`${$statecolors ? $statecolors.length: 0} states`}" />
   </div>
   -->
-  <div class="section">
-    <input on:click='$set({ x: $x === 8 ? 16 : 8, y: $y === 8 ? 16 : 8 })' type="button" value="{`[${$x}x${$y}]`}" />
-  </div>
-  <div class="section">
-    <input on:click='$set({ size: $size === 0.5 ? 0.25 : 0.5 })' type="button" value="size: {$size}" />
-  </div>
 </div>
 <slot></slot>
 
@@ -116,13 +113,21 @@
     }
   ])
 
+  const fieldsizes = mapIterator([
+    {
+      x: 8, y: 8, size: 0.5,
+    }, {
+      x: 16, y: 16, size: 0.25,
+    }
+  ])
+
   export default {
     oncreate() {
       const interval = intervals.next()
-      this.store.set({ interval })
-      const autostart = (t) => t.fire('init')
+      const fieldsize = fieldsizes.next()
+      this.store.set({ interval, ...fieldsize })
+      const autostart = t => t.fire('init')
       setTimeout(autostart, 200, this)
-
 
       timerHandle = setInterval(timer, interval.ms, this)
     },
@@ -136,7 +141,11 @@
         this.store.set({ interval })
         clearInterval(timerHandle)
         timerHandle = setInterval(timer, interval.ms, this)
-      }
+      },
+      toggleFieldResize() {
+        const fieldsize = fieldsizes.next()
+        this.store.set({ ...fieldsize })
+      },
     }
   }
 </script>
