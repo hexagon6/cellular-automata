@@ -1,0 +1,27 @@
+<input on:click='toggleFieldType()' type="button" value="{$fieldtype}" />
+
+<script>
+  import { mapIterator } from '../../modules'
+
+  const fieldtypes = mapIterator([
+    {
+      fieldtype: 'hexagonal'
+    }, {
+      fieldtype: 'rectangular'
+    }
+  ])
+
+  export default {
+    oncreate() {
+      // FIXME: initialization, sync with store defaults
+      const { fieldtype } = fieldtypes.next()
+      this.store.set({ fieldtype })
+    },
+    methods: {
+      toggleFieldType() {
+        const { fieldtype } = fieldtypes.next()
+        this.store.set({ fieldtype })
+      },
+    }
+  }
+</script>
