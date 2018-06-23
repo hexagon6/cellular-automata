@@ -43,8 +43,8 @@
 <slot></slot>
 
 <style>
-  button,
-  input[type="button"] {
+  div :global(button,
+  input[type="button"]) {
     background-color: lightblue;
     border-radius: 6px;
     border-color: darkcyan;
@@ -67,10 +67,6 @@
 
   .section {
     border-left: 1px solid greenyellow;
-  }
-
-  .min-width {
-    width: 100px;
   }
 </style>
 
