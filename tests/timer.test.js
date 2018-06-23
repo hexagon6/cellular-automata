@@ -7,11 +7,12 @@ test('timer', t => {
   t.is(typeof timer, 'function')
   const init = {
     stopped: false,
-    fire: signal => ({
-      signal,
-    }),
   }
   const store = new Store(init)
+  const that = {
+    store,
+    fire: signal => ({ signal })
+  }
   t.deepEqual(store.get(), init)
-  t.pass(timer(store, 'stopped', 'next'))
+  t.pass(timer(that, 'stopped', 'next'))
 })

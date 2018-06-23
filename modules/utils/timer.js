@@ -1,7 +1,6 @@
-export const timer = function (t, key, signal) {
+export const timer = function(t, key, signal) {
   if (t.store) {
-    if (!t.store.get()[key]) {
-      t.fire(signal)
-    }
+    const store = t.store.get()
+    if (key in store && !store[key]) t.fire(signal)
   }
 }
