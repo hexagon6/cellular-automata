@@ -1,6 +1,6 @@
 <div class="control-panel">
   <div class="section">
-    <input on:click='toggleFieldResize()' type="button" value="{`[${$x}x${$y}]`}" />
+    <FieldResize />
   </div>
   <div class="section">
     <input on:click="fire('init')" type="button" value="init" />
@@ -78,6 +78,7 @@
 </style>
 
 <script>
+  import FieldResize from './controls/FieldResize.html'
   import { increase, mapIterator } from '../modules'
 
   let timerHandle
@@ -113,19 +114,10 @@
     }
   ])
 
-  const fieldsizes = mapIterator([
-    {
-      x: 8, y: 8, size: 0.5,
-    }, {
-      x: 16, y: 16, size: 0.25,
-    }
-  ])
-
   export default {
     oncreate() {
       const interval = intervals.next()
-      const fieldsize = fieldsizes.next()
-      this.store.set({ interval, ...fieldsize })
+      this.store.set({ interval })
       const autostart = t => t.fire('init')
       setTimeout(autostart, 200, this)
 
@@ -142,10 +134,9 @@
         clearInterval(timerHandle)
         timerHandle = setInterval(timer, interval.ms, this)
       },
-      toggleFieldResize() {
-        const fieldsize = fieldsizes.next()
-        this.store.set({ ...fieldsize })
       },
+    components: {
+      FieldResize,
     }
   }
 </script>
