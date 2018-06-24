@@ -7,6 +7,8 @@ import WavesDefault from './stores/waves'
 import { getKeys, listToDict, dictToList } from './field/utils'
 import { neighborIn } from './field/rectangular/neighborhood'
 
+import { genHSLAColor } from './colors/hsla'
+
 import { increase, mapIterator } from './utils/mapiterator'
 import { timer } from './utils/timer'
 
@@ -61,4 +63,5 @@ export {
   dictToList,
   countCells,
   neighborIn,
+  genHSLAColor,
 }
