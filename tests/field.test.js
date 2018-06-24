@@ -25,12 +25,12 @@ test('dictToList', t => {
   t.deepEqual(dictToList({ '0x0': 1 }), [cellOne])
 })
 
-test('rectangular field generation', t => { 
+test('rectangular field generation', t => {
   const rect = fieldGen('rectangular')
   t.is(typeof rect, 'function')
 })
 
-test('hexagonal field generation', t => { 
+test('hexagonal field generation', t => {
   const rect = fieldGen('hexagonal')
   t.is(typeof rect, 'function')
 })

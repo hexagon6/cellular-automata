@@ -110,7 +110,7 @@ test('Waves', t => {
     '2x1': 1,
     '2x2': 0,
   }
-  t.deepEqual(waves(3,3)(cellsBefore), cellsAfter)
+  t.deepEqual(waves(3, 3)(cellsBefore), cellsAfter)
 })
 
 test('Waves 2', t => {
@@ -136,7 +136,7 @@ test('Waves 2', t => {
     '2x1': 0,
     '2x2': 0,
   }
-  t.deepEqual(waves(3,3)(cellsBefore), cellsAfter)
+  t.deepEqual(waves(3, 3)(cellsBefore), cellsAfter)
 })
 
 test('Waves hex', t => {
@@ -162,7 +162,7 @@ test('Waves hex', t => {
     '2x1': 1,
     '2x2': 0,
   }
-  t.deepEqual(wavesHex(3,3)(cellsBefore), cellsAfter)
+  t.deepEqual(wavesHex(3, 3)(cellsBefore), cellsAfter)
 })
 
 test('Waves hex 2', t => {

@@ -11,7 +11,7 @@ test('timer', t => {
   const store = new Store(init)
   const that = {
     store,
-    fire: signal => ({ signal })
+    fire: signal => ({ signal }),
   }
   t.deepEqual(store.get(), init)
   t.pass(timer(that, 'stopped', 'next'))
