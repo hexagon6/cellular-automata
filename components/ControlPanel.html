@@ -1,37 +1,38 @@
-<div class="control-panel">
-  <div class="section">
-    <FieldResize />
-  </div>
-  <div class="section">
-    <input on:click="fire('init')" type="button" value="init" />
-  </div>
-  <div class="section">
-    <FieldType />
-  </div>
-  <div class="section">
-    <input on:click="fire('next')" type="button" value="next" />
-  </div>
-  <div class="section">
-    <button on:click='$set({ stopped: !$stopped})'>
-      {#if $stopped}
-      <div>
-        <span>⌛</span>
-      </div>
-      {:else}
-      <div style="transform:rotate(180deg);">
-        <span>⌛</span>
-      </div>
-      {/if}
-    </button>
-  </div>
-  <div class="section">
-    <Interval on:next="fire('next')" />
-  </div>
-  <!--
+<div class="wrapper">
+  <div class="control-panel">
+    <div class="section">
+      <FieldResize />
+    </div>
+    <div class="section">
+      <input on:click="fire('init')" type="button" value="init" />
+    </div>
+    <div class="section">
+      <FieldType />
+    </div>
+    <div class="section">
+      <input on:click="fire('next')" type="button" value="next" />
+    </div>
+    <div class="section">
+      <button on:click='$set({ stopped: !$stopped})'>
+        {#if $stopped}
+        <div>
+          <span>⌛</span>
+        </div>
+        {:else}
+        <div style="transform:rotate(180deg);">
+          <span>⌛</span>
+        </div>
+        {/if}
+      </button>
+    </div>
+    <div class="section">
+      <Interval on:next="fire('next')" />
+    </div>
+    <!--
     TODO: make a color profile / state selection component
     FIXME: switcher with many different states, not only 2
   -->
-  <!--
+    <!--
   <div class="section">
     <input on:click='$set({ statecolors: $statecolors.length === 3
       ? $stati[0]
@@ -39,8 +40,9 @@
     })' type="button" value="{`${$statecolors ? $statecolors.length: 0} states`}" />
   </div>
   -->
+  </div>
+  <slot></slot>
 </div>
-<slot></slot>
 
 <style>
   div :global(button,
@@ -58,15 +60,23 @@
 
   .control-panel {
     display: flex;
-    justify-items: center;
-    justify-content: flex-start;
-    background: seashell;
+    flex-direction: column;
+
+
+    background-color: #efaf03;
     padding: 4px;
     margin: 2px;
   }
 
   .section {
     border-left: 1px solid greenyellow;
+  }
+
+  .wrapper {
+    display: flex;
+    align-content: flex-start;
+		width: 100%;
+		height: 100%;
   }
 </style>
 
