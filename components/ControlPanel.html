@@ -44,14 +44,23 @@
   <slot></slot>
 </div>
 
+<!--  green  #60f370; -->
+<!--  orange #efaf03; -->
+<!--  blue #18c8ff; -->
 <style>
   div :global(button,
   input[type="button"]) {
     background-color: lightblue;
     border-radius: 6px;
     border-color: darkcyan;
-    width: 100%;
-    height: 8em;
+    width: 7em;
+    height: 100%;
+    font-size: 2rem;
+    margin: 2px 1px;
+    padding: 4px 16px;
+    color: white;
+    text-shadow: 0px 0px 4px #efaf03;
+    border-radius: 10px;
   }
 
   /* style alternative state  */
@@ -73,8 +82,12 @@
   .wrapper {
     display: flex;
     align-content: flex-start;
-		width: 100%;
-		height: 100%;
+    width: 100%;
+    height: 100%;
+  }
+
+  .section {
+    height: 100%;
   }
 
   @media (max-width: 600px) {
@@ -94,7 +107,6 @@
       width: 100%;
     }
   }
-
 </style>
 
 <script>
