@@ -2,21 +2,12 @@
   <title>Waves</title>
 </svelte:head>
 
-<div class="container">
-  <ControlPanel on:next="next()" on:init="init($x, $y)">
-    <CA id="1" {type} />
-  </ControlPanel>
-</div>
-
-<style>
-  .container {
-    width: 100%;
-    height: 100%;
-  }
-</style>
+<ControlPanel on:next="next()" on:init="init($x, $y)">
+  <Field />
+</ControlPanel>
 
 <script>
-  import CA from '../components/CA.html';
+  import Field from '../components/Field.html';
   import ControlPanel from '../components/ControlPanel.html'
   import { WavesDefault as defaults, fieldGen, initializer, listToDict, dictToList } from '../modules'
 
@@ -36,11 +27,10 @@
       })
     },
     computed: {
-      type: ({ $algorithm }) => $algorithm && $algorithm.name || '',
       run: ({ $algorithm, $fieldtype }) => $algorithm && $algorithm.run[$fieldtype]
     },
     components: {
-      CA,
+      Field,
       ControlPanel,
     },
     methods: {
