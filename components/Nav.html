@@ -32,23 +32,35 @@
 	}
 
 	.selected {
-		position: relative;
-		display: inline-block;
-	}
-
-	.selected::after {
-		position: absolute;
-		content: '';
-		width: calc(100% - 1em);
-		height: 2px;
-		background-color: rgb(170,30,30);
-		display: block;
-		bottom: -1px;
+		color: hsl(184, 100%, 98%);
+		border-style: solid;
+		border-color: hsl(184, 90%, 50%);
+		background-color: hsla(226, 40%, 50%, 0.2);
 	}
 
 	a {
+		color: hsl(184, 100%, 75%);
 		text-decoration: none;
 		padding: 1em 0.5em;
+		margin: 0 2px;
 		display: block;
+		outline: 0;
+		border-style: solid;
+		border-width: 0.1em;
+		border-radius: 0.8em;
+		border-color: hsla(184, 95%, 50%, 0.1);
+
+		transition: 0.7s ease;
+	}
+
+	a:hover,
+	a:active,
+	a:focus {
+		border-style: solid;
+		border-color: hsl(184, 95%, 50%);
+		border-width: 0.1em;
+		border-radius: 8em;
+
+		transition: 1.7s ease;
 	}
 </style>
