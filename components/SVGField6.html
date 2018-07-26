@@ -1,22 +1,11 @@
-<svg width="100%" height="100%" viewBox="0 0 {$size * $x * 100} {$size * $y * 100}">
-  <!-- <rect width="100%" height="100%" fill="hsl(184,100%,100%)" stroke-width="0px" /> -->
+<svg width="100%" height="100%" viewBox="0 8 {x} {y}">
   <defs>
     <polygon id="hexagon" points="{hexagon}" opacity="1" stroke-opacity="0.2" stroke="#efefef" />
-    <!-- <g id="circle">
-      <circle r="{$size * 2}" fill="black" opacity="1" />
-      <circle r="{$size * 86.66 / 2}" fill="skyblue" opacity="0.8" />
-    </g> -->
   </defs>
   <g transform="matrix(1.35,0,0,1.195,0,0)">
     {#each field as f, i}
     <g transform="matrix(1,0,0,1,{f.x * 75 * $size},{f.y * 86.66 * $size})">
-      <!-- <use
-        href="#circle"
-        x="{$size * circle.offset}"
-        y="{$size * (circle.offset + ((f.x % 2 === 1) ? 6.66: 50))}"
-      /> -->
-      <use href="#hexagon" fill="{cellstate($statecolors, f.v)}" x="{0}" y="{(f.x % 2 === 1) ? 6.66 * $size : 50 * $size}"
-      on:click="fire('cell', {x: f.x, y: f.y, s: $statecolors.length})"
+      <use href="#hexagon" fill="{cellstate($statecolors, f.v)}" x="{0}" y="{(f.x % 2 === 1) ? 6.66 * $size : 50 * $size}" on:click="fire('cell', {x: f.x, y: f.y, s: $statecolors.length})"
       />
     </g>
     {/each}
@@ -45,7 +34,9 @@
       }
     },
     computed: {
-      hexagon: ({ $size }) => scale($size)
+      hexagon: ({ $size }) => scale($size),
+      x: ({ $size, $x }) => 100 * $size * $x,
+      y: ({ $size, $y }) => 100 * $size * $y,
     },
     helpers: {
       cellstate: (colors, n) => n < colors.length ? colors[n] : colors[0]
