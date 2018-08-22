@@ -12,7 +12,7 @@ export const gol = (x, y) => cells => {
     .reduce((a, c) => Object.assign(a, c), {})
 }
 
-export const golHex = (x, y) => cells => { 
+export const golHex = (x, y) => cells => {
   const { hex } = neighborIn(x, y)
   return Object.keys(cells)
     .map(k => {

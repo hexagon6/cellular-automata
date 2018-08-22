@@ -19,7 +19,7 @@
     methods: {
       toggleFieldResize() {
         const { fieldsizes } = this.store.get()
-        const { x, y, size }= fieldsizes.next()
+        const { x, y, size } = fieldsizes.next()
         this.store.set({ x, y, size })
       },
     }

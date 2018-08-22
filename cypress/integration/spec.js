@@ -8,27 +8,23 @@ describe('Sapper cellular automata', () => {
   })
 
   it('navigates to /gameoflife', () => {
-    cy
-      .get('nav a')
+    cy.get('nav a')
       .contains('Game of Life')
       .click()
-		cy.url().should('include', '/gameoflife')
-	})
+    cy.url().should('include', '/gameoflife')
+  })
 
   it('navigates to /waves', () => {
-    cy
-      .get('nav a')
+    cy.get('nav a')
       .contains('Waves')
       .click()
-		cy.url().should('include', '/waves')
+    cy.url().should('include', '/waves')
   })
 
   it('navigates to /about', () => {
-    cy
-      .get('nav a')
+    cy.get('nav a')
       .contains('about')
       .click()
     cy.url().should('include', '/about')
-	})
-
+  })
 })

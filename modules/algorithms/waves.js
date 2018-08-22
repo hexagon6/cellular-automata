@@ -10,7 +10,7 @@ export const waves = (x, y) => cells => {
     .map(k => {
       const n = countCells(k)(cells, excited, neighborhood)
       const state = cells[k]
-      const newState = (n > 0 || state > 0) ? (state + 1) % 3 : state
+      const newState = n > 0 || state > 0 ? (state + 1) % 3 : state
       return { [k]: newState }
     })
     .reduce((a, c) => Object.assign(a, c), {})
