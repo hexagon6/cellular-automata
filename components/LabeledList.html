@@ -1,20 +1,19 @@
 <ul>
   {#each els as [key, value] }
-    <li>{key}: {value}</li>
+  <li>{key}: {value}</li>
   {/each}
 </ul>
 
 <style>
-
-ul {
+  ul {
     list-style: none;
   }
 
-li {
-  float: left;
-  padding-right: 2em;
-}
-</style>  
+  li {
+    float: left;
+    padding-right: 2em;
+  }
+</style>
 
 <script>
   export default {

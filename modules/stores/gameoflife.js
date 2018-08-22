@@ -1,13 +1,17 @@
 import { gol, golHex } from '../algorithms/gameoflife'
 import { mapIterator } from '../utils/mapiterator'
 
-const fieldtypes = mapIterator([
-  {
-    fieldtype: 'rectangular'
-  }, {
-    fieldtype: 'hexagonal'
-  }
-], 0)
+const fieldtypes = mapIterator(
+  [
+    {
+      fieldtype: 'rectangular',
+    },
+    {
+      fieldtype: 'hexagonal',
+    },
+  ],
+  0
+)
 
 const stati = [
   ['#ffffff', '#efefef'],
@@ -21,10 +25,10 @@ export default {
     run: {
       rectangular: gol,
       hexagonal: golHex,
-    }
+    },
   },
   field: [],
   fieldtypes,
   statecolors: stati[0],
   stati: stati,
-};
+}

@@ -8,6 +8,6 @@ export function* increase(max = Infinity, init = 0) {
 export const mapIterator = (map, index = 0) => {
   const iterator = increase(map.length, index)
   return {
-    next: () => map[iterator.next().value]
+    next: () => map[iterator.next().value],
   }
 }
