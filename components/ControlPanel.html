@@ -110,10 +110,6 @@
 </style>
 
 <script>
-  import FieldResize from './controls/FieldResize.html'
-  import FieldType from './controls/FieldType.html'
-  import Interval from './controls/Interval.html'
-
   export default {
     oncreate() {
       this.store.set({ stopped: false })
@@ -121,9 +117,9 @@
       setTimeout(autostart, 200, this)
     },
     components: {
-      FieldResize,
-      FieldType,
-      Interval,
+      FieldResize: './controls/FieldResize.html',
+      FieldType: './controls/FieldType.html',
+      Interval: './controls/Interval.html',
     }
   }
 </script>

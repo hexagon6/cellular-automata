@@ -54,9 +54,6 @@
 </style>
 
 <script>
-  import LabeledList from './LabeledList.html'
-  import SVGField4 from './SVGField4.html'
-  import SVGField6 from './SVGField6.html'
   import { listToDict, dictToList } from '../modules'
 
   export default {
@@ -69,9 +66,9 @@
       })
     },
     components: {
-      LabeledList,
-      SVGField4,
-      SVGField6,
+      LabeledList: './LabeledList.html',
+      SVGField4: './SVGField4.html',
+      SVGField6: './SVGField6.html',
     },
     methods: {
       cell({ x, y, s }) { 
