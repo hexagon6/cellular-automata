@@ -11,7 +11,8 @@
 
   export default {
     oncreate() {
-      const { algorithm, fieldtypes, name, statecolors, stati } = defaults
+      const { algorithm, fieldtypes: _fieldtypes, name, statecolors, stati } = defaults
+      const fieldtypes = _fieldtypes()
       const { fieldtype } = fieldtypes.next()
       this.store.set({
         algorithm,
