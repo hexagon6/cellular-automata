@@ -1,12 +1,9 @@
-import { init } from 'sapper/runtime.js'
 import { Store } from 'svelte/store.js'
-
-import { manifest } from './manifest/client.js'
+import * as sapper from '../__sapper__/client.js'
 
 // `routes` is an array of route objects injected by Sapper
-init({
+sapper.start({
   target: document.querySelector('#sapper'),
-  manifest,
   store: data => new Store(data),
 })
 
