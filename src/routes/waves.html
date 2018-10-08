@@ -7,7 +7,7 @@
 </ControlPanel>
 
 <script>
-  import { WavesDefault as defaults, fieldGen, initializer, listToDict, dictToList } from '../modules'
+  import { WavesDefault as defaults, fieldGen, initializer, listToDict, dictToList } from '../../modules'
 
   const dropsInit = (n, i) => Math.random() > 0.9 ? 1 : 0
 
@@ -28,8 +28,8 @@
       run: ({ $algorithm, $fieldtype }) => $algorithm && $algorithm.run[$fieldtype]
     },
     components: {
-      Field: '../components/Field.html',
-      ControlPanel: '../components/ControlPanel.html',
+      Field: '../../components/Field.html',
+      ControlPanel: '../../components/ControlPanel.html',
     },
     methods: {
       next() {

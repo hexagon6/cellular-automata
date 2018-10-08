@@ -7,7 +7,7 @@ import { manifest } from './manifest/server.js'
 
 const serverArgs = [
   compression({ threshold: 0 }),
-  serve('assets'),
+  serve('static'),
   // authenticationMiddleware(), // TODO: implement user session handling
   sapper({
     manifest,
