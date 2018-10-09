@@ -27,7 +27,7 @@ jobs:
     - stage: build & deploy
       before_deploy:
         - npm run export -- --basepath $BASE_URL
-        - find __sapper__ -maxdepth 1 ! '(' -name export -o -name '.git*' -o -name '.' ')' -print0 | xargs -0 /bin/rm -rf
+        - find . -maxdepth 2 ! '(' -name export -o -name '.git*' -o -name '.' ')' -print0 | xargs -0 /bin/rm -rf
         - ls .
         - mv -v __sapper__/export/${BASE_URL}/* .
         - touch .nojekyll # stop ignoring files staring with _, ., # or ~
