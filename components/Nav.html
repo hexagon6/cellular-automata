@@ -12,9 +12,13 @@
 		border-bottom: 1px solid rgba(170, 30, 30, 0.1);
 		font-weight: 300;
 		padding: 0 1em;
+		display: flex;
+		justify-content: center;
 	}
 
 	ul {
+		display: flex;
+		flex-direction: row;
 		margin: 0;
 		padding: 0;
 	}
@@ -39,7 +43,8 @@
 	}
 
 	a {
-		color: hsl(184, 100%, 75%);
+		color: hsl(184, 100%, 20%);
+		background-color: hsl(184, 100%, 75%);
 		text-decoration: none;
 		padding: 1em 0.5em;
 		margin: 0 2px;
@@ -47,20 +52,22 @@
 		outline: 0;
 		border-style: solid;
 		border-width: 0.1em;
-		border-radius: 0.8em;
+		border-radius: 8em;
 		border-color: hsla(184, 95%, 50%, 0.1);
 
-		transition: 0.7s ease;
+		transition: 2s ease;
 	}
 
 	a:hover,
 	a:active,
 	a:focus {
+		color: hsl(184, 100%, 75%);
+		background-color: hsl(184, 100%, 20%);
 		border-style: solid;
 		border-color: hsl(184, 95%, 50%);
 		border-width: 0.1em;
-		border-radius: 8em;
+		border-radius: 0.8em;
 
-		transition: 1.7s ease;
+		transition: 0.3s ease;
 	}
 </style>
