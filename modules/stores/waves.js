@@ -1,7 +1,7 @@
 import { waves, wavesHex } from '../algorithms/waves'
 import { mapIterator } from '../utils/mapiterator'
 
-const fieldtypes = mapIterator(
+const fieldtypes = () => mapIterator(
   [
     {
       fieldtype: 'rectangular',

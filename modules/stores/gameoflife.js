@@ -1,7 +1,7 @@
 import { gol, golHex } from '../algorithms/gameoflife'
 import { mapIterator } from '../utils/mapiterator'
 
-const fieldtypes = mapIterator(
+const fieldtypes = () => mapIterator(
   [
     {
       fieldtype: 'rectangular',
