@@ -1,18 +1,18 @@
 import test from 'ava'
-import { Store } from 'svelte/store.js'
+import { get, writable } from 'svelte/store'
 
-import { timer } from '../modules'
+import { timer } from '../src/lib/modules/index.js'
 
-test('timer', t => {
+test('timer', (t) => {
   t.is(typeof timer, 'function')
   const init = {
-    stopped: false,
+    stopped: writable(false),
   }
-  const store = new Store(init)
+  const store = writable(init)
   const that = {
     store,
-    fire: signal => ({ signal }),
+    fire: (signal) => ({ signal }),
   }
-  t.deepEqual(store.get(), init)
+  t.deepEqual(get(store), init)
   t.pass(timer(that, 'stopped', 'next'))
 })

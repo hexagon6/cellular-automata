@@ -1,7 +1,7 @@
 import test from 'ava'
-import { naive, countCells } from '../modules/'
-import { gol, golHex } from '../modules/algorithms/gameoflife'
-import { waves, wavesHex } from '../modules/algorithms/waves'
+import { naive, countCells } from '../src/lib/modules/index.js'
+import { gol, golHex } from '../src/lib/modules/algorithms/gameoflife.js'
+import { waves, wavesHex } from '../src/lib/modules/algorithms/waves.js'
 
 const cellZero = { x: 0, y: 0, v: 0 }
 const cellOne = { x: 0, y: 0, v: 1 }
@@ -28,12 +28,12 @@ const after = [
   },
 ]
 
-test('Naive algorithm', t => {
+test('Naive algorithm', (t) => {
   t.deepEqual(naive([cellZero], 2), [cellOne])
   t.deepEqual(naive([cellOne], 2), [cellZero])
 })
 
-test('Game of Life', t => {
+test('Game of Life', (t) => {
   const cellsBefore = {
     '0x0': 0,
     '0x1': 1,
@@ -60,7 +60,7 @@ test('Game of Life', t => {
   t.deepEqual(gol(6, 6)(cellsAfter), cellsBefore)
 })
 
-test('hexagonal Game of Life', t => {
+test('hexagonal Game of Life', (t) => {
   const cellsBefore = {
     '0x0': 0,
     '0x1': 1,
@@ -87,7 +87,7 @@ test('hexagonal Game of Life', t => {
 })
 
 test.todo('calculate new state based on neighbors')
-test('Waves', t => {
+test('Waves', (t) => {
   const cellsBefore = {
     '0x0': 0,
     '0x1': 0,
@@ -113,7 +113,7 @@ test('Waves', t => {
   t.deepEqual(waves(3, 3)(cellsBefore), cellsAfter)
 })
 
-test('Waves 2', t => {
+test('Waves 2', (t) => {
   const cellsBefore = {
     '0x0': 0,
     '0x1': 0,
@@ -139,7 +139,7 @@ test('Waves 2', t => {
   t.deepEqual(waves(3, 3)(cellsBefore), cellsAfter)
 })
 
-test('Waves hex', t => {
+test('Waves hex', (t) => {
   const cellsBefore = {
     '0x0': 0,
     '0x1': 0,
@@ -165,7 +165,7 @@ test('Waves hex', t => {
   t.deepEqual(wavesHex(3, 3)(cellsBefore), cellsAfter)
 })
 
-test('Waves hex 2', t => {
+test('Waves hex 2', (t) => {
   const cellsBefore = {
     '1x0': 0,
     '1x1': 0,

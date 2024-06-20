@@ -1,5 +1,5 @@
 import test from 'ava'
-import { hexagonal } from '../modules'
+import { hexagonal } from '../src/lib/modules/index.js'
 
 const {
   serialize,
@@ -18,31 +18,31 @@ const deserializedHexagonPoints = [
   [75, 6.666666666666667],
 ]
 
-test('deserialize', t => {
+test('deserialize', (t) => {
   t.deepEqual(deserialize(hexagonPoints), deserializedHexagonPoints)
 })
 
-test('serialize', t => {
+test('serialize', (t) => {
   t.deepEqual(serialize(deserializedHexagonPoints), hexagonPoints)
 })
 
-test('serialize & deserialize', t => {
+test('serialize & deserialize', (t) => {
   t.deepEqual(serialize(deserialize(hexagonPoints)), hexagonPoints)
 })
 
-test('generate points for a hexagon', t => {
+test('generate points for a hexagon', (t) => {
   t.is(scale(), hexagonPoints)
 })
 
-test('generate points for a hexagon, with scale factor 1', t => {
+test('generate points for a hexagon, with scale factor 1', (t) => {
   t.is(scale(1), hexagonPoints)
 })
 
-test('generate points for a hexagon, with scale factor 5', t => {
+test('generate points for a hexagon, with scale factor 5', (t) => {
   t.is(scale(3), bigHexagonPoints)
 })
 
-test('field generator', t => {
+test('field generator', (t) => {
   const f = field(2, 2, 2, (i, n) => i % n)
   t.deepEqual(f[0], {
     v: 0,

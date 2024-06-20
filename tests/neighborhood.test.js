@@ -1,10 +1,13 @@
 import test from 'ava'
-import { countCells, neighborIn } from '../modules/'
+import { countCells, neighborIn } from '../src/lib/modules/index.js'
 
-test('directions', t => {
-  t.throws(() => {
-    neighborIn(0, 0)
-  }, 'choose 1 instead of 0')
+test('directions', (t) => {
+  t.throws(
+    () => {
+      neighborIn(0, 0)
+    },
+    { message: 'choose 1 instead of 0' }
+  )
   const nb2 = neighborIn(2, 2)
   const nb3 = neighborIn(3, 3)
   const left2 = nb2.left
@@ -33,7 +36,7 @@ test('directions', t => {
   t.is(down3(2), 0)
 })
 
-test('moore in 2x2', t => {
+test('moore in 2x2', (t) => {
   const { moore } = neighborIn(2, 2)
   const NB = moore(0, 0)
   t.false(NB('0x0'))
@@ -42,7 +45,7 @@ test('moore in 2x2', t => {
   t.true(NB('1x1'))
 })
 
-test('moore in 3x3', t => {
+test('moore in 3x3', (t) => {
   const { moore } = neighborIn(3, 3)
   const NB = moore(1, 1)
   // 8 of 9 cells
@@ -57,7 +60,7 @@ test('moore in 3x3', t => {
   t.true(NB('2x2'))
 })
 
-test('count neighbours with condition', t => {
+test('count neighbours with condition', (t) => {
   const { moore: nb } = neighborIn(2, 2)
   t.is(
     countCells('0x0')(
@@ -67,14 +70,14 @@ test('count neighbours with condition', t => {
         '0x1': 0,
         '1x1': 0,
       },
-      v => v === 0,
+      (v) => v === 0,
       nb
     ),
     3
   )
 })
 
-test('count dead neighbours on 3x3', t => {
+test('count dead neighbours on 3x3', (t) => {
   const { vneumann, moore } = neighborIn(3, 3)
   const cells = {
     '0x0': 0,
@@ -87,12 +90,12 @@ test('count dead neighbours on 3x3', t => {
     '2x1': 0,
     '2x2': 0,
   }
-  const empty = v => v === 0
+  const empty = (v) => v === 0
   t.is(countCells('1x1')(cells, empty, moore), 8)
   t.is(countCells('1x1')(cells, empty, vneumann), 4)
 })
 
-test('count alive neighbours on 3x3', t => {
+test('count alive neighbours on 3x3', (t) => {
   const { vneumann, moore, hex } = neighborIn(4, 4)
   const cells = {
     '0x0': 0,
@@ -105,7 +108,7 @@ test('count alive neighbours on 3x3', t => {
     '2x1': 0,
     '2x2': 1,
   }
-  const alive = v => v === 1
+  const alive = (v) => v === 1
   t.is(countCells('1x1')(cells, alive, moore), 2)
   t.is(countCells('1x1')(cells, alive, vneumann), 1)
   t.is(countCells('1x1')(cells, alive, hex), 1)
@@ -113,7 +116,7 @@ test('count alive neighbours on 3x3', t => {
   t.is(countCells('1x0')(cells, alive, hex), 0)
 })
 
-test('count neighbours on hex neighborhood', t => {
+test('count neighbours on hex neighborhood', (t) => {
   const { hex } = neighborIn(6, 6)
   const cells = {
     '0x0': 1,
@@ -133,12 +136,12 @@ test('count neighbours on hex neighborhood', t => {
     '3x2': 1,
     '3x3': 1,
   }
-  const alive = v => v === 1
+  const alive = (v) => v === 1
   t.is(countCells('1x1')(cells, alive, hex), 6)
   t.is(countCells('2x2')(cells, alive, hex), 6)
 })
 
-test('count neighbours on hex neighborhood 2', t => {
+test('count neighbours on hex neighborhood 2', (t) => {
   const { hex } = neighborIn(6, 6)
   const cells = {
     '0x0': 1,
@@ -158,7 +161,7 @@ test('count neighbours on hex neighborhood 2', t => {
     '3x2': 1,
     '3x3': 1,
   }
-  const alive = v => v === 1
+  const alive = (v) => v === 1
   t.is(countCells('1x1')(cells, alive, hex), 5)
   t.is(countCells('2x1')(cells, alive, hex), 6)
   t.is(countCells('3x1')(cells, alive, hex), 3)
