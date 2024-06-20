@@ -1,0 +1,13 @@
+import { writable } from 'svelte/store'
+export const algorithm = writable()
+export const x = writable(8)
+export const y = writable(8)
+export const size = writable(0.5)
+export const interval = writable()
+export const field = writable([])
+export const fieldtype = writable()
+export const statecolors = writable([])
+export const fieldtypes = writable()
+export const stati = writable()
+export const name = writable()
+export const timerHandle = writable()

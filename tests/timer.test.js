@@ -6,7 +6,7 @@ import { timer } from '../src/lib/modules/index.js'
 test('timer', (t) => {
   t.is(typeof timer, 'function')
   const init = {
-    stopped: false,
+    stopped: writable(false),
   }
   const store = writable(init)
   const that = {

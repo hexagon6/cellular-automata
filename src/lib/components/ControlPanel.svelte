@@ -1,32 +1,57 @@
+<script>
+  import { stopped } from '../modules/utils/timer.js'
+  import { createEventDispatcher, onMount } from 'svelte'
+  import FieldType from './controls/FieldType.svelte'
+  import FieldResize from './controls/FieldResize.svelte'
+  import Interval from './controls/Interval.svelte'
+
+  const dispatch = createEventDispatcher()
+
+  const autostart = () => dispatch('init', { detail: 'init' })
+
+  onMount(() => {
+    const timeout = setTimeout(autostart, 200, this)
+    return () => clearTimeout(timeout)
+  })
+</script>
+
 <div class="wrapper">
   <div class="control-panel">
     <div class="section">
       <FieldResize />
     </div>
     <div class="section">
-      <input on:click="fire('init')" type="button" value="init" />
+      <input
+        on:click={() => dispatch('init', { detail: 'init' })}
+        type="button"
+        value="init"
+      />
     </div>
     <div class="section">
       <FieldType />
     </div>
     <div class="section">
-      <input on:click="fire('next')" type="button" value="next" />
+      <input
+        on:click={() => dispatch('next', { detail: 'next' })}
+        type="button"
+        value="next"
+      />
     </div>
     <div class="section">
-      <button on:click='$set({ stopped: !$stopped})'>
+      <button on:click={() => ($stopped = !$stopped)}>
         {#if $stopped}
-        <div>
-          <span>⌛</span>
-        </div>
+          <div>
+            <span>⌛</span>
+          </div>
         {:else}
-        <div style="transform:rotate(180deg);">
-          <span>⌛</span>
-        </div>
+          <div style="transform:rotate(180deg);">
+            <span>⌛</span>
+          </div>
         {/if}
       </button>
     </div>
     <div class="section">
-      <Interval on:next="fire('next')" />
+      <Interval on:next={() => dispatch('next', { detail: 'next' })} />
     </div>
     <!--
     TODO: make a color profile / state selection component
@@ -48,8 +73,8 @@
 <!--  orange #efaf03; -->
 <!--  blue #18c8ff; -->
 <style>
-  div :global(button,
-  input[type="button"]) {
+  div :global(button),
+  div :global(input) {
     background-color: lightblue;
     border-radius: 6px;
     border-color: darkcyan;
@@ -100,7 +125,8 @@
       display: block !important;
     }
 
-    div :global(button, input[type="button"]) {
+    div :global(button),
+    div :global(input[type='button']) {
       font-size: 0.8em;
       padding: 0 1em;
       height: 5em;
@@ -108,18 +134,3 @@
     }
   }
 </style>
-
-<script>
-  export default {
-    oncreate() {
-      this.store.set({ stopped: false })
-      const autostart = t => t.fire('init')
-      setTimeout(autostart, 200, this)
-    },
-    components: {
-      FieldResize: './controls/FieldResize.html',
-      FieldType: './controls/FieldType.html',
-      Interval: './controls/Interval.html',
-    }
-  }
-</script>
