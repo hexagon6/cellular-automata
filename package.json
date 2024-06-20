@@ -1,19 +1,15 @@
 {
-  "name": "@hexagon6/sapper-cellular-automata",
-  "description": "Cellular Automata built with svelte app maker",
+  "name": "@hexagon6/cellular-automata",
+  "description": "Cellular Automata",
   "version": "0.0.1-alpha.8",
   "scripts": {
-    "dev": "PORT=3030 vite dev",
+    "dev": "vite dev",
     "build": "vite build",
     "export": "vite build",
-    "cy:run": "cypress run",
-    "cy:open": "cypress open",
-    "cy:record": "cypress run --record --key ${CYPRESS_RECORD_KEY}",
-    "lint": "prettier \"{app,components,cypress,modules,routes,tests,webpack}/**/*.js{,on}\"",
-    "lint:fix": "prettier --write \"{app,components,cypress,modules,routes,tests,webpack}/**/*.js{,on}\"",
+    "lint": "prettier \"{app,components,modules,routes,tests}/**/*.js{,on}\"",
+    "lint:fix": "prettier --write \"{app,components,modules,routes,tests}/**/*.js{,on}\"",
     "unit": "ava",
     "unit:watch": "ava --watch",
-    "cov": "nyc --reporter=lcov --reporter=text-lcov npm run unit",
     "test:dev": "run-p --race dev unit",
     "test": "run-s unit"
   },
@@ -40,7 +36,7 @@
   "main": "index.js",
   "module": "main.js",
   "type": "module",
-  "repository": "git@github.com:hexagon6/sapper-cellular-automata.git",
+  "repository": "git@github.com:hexagon6/cellular-automata.git",
   "author": "Tobi Turing <dev@fet.li>",
   "license": "MIT"
 }
