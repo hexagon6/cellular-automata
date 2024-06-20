@@ -1,13 +1,13 @@
-import { countCells, neighborIn } from '../'
+import { countCells, neighborIn } from '../index.js'
 
-const quiet = v => v === 0
-const excited = v => v === 1
-const falling = v => v === 2
+const quiet = (v) => v === 0
+const excited = (v) => v === 1
+const falling = (v) => v === 2
 
-export const waves = (x, y) => cells => {
+export const waves = (x, y) => (cells) => {
   const { vneumann: neighborhood } = neighborIn(x, y)
   return Object.keys(cells)
-    .map(k => {
+    .map((k) => {
       const n = countCells(k)(cells, excited, neighborhood)
       const state = cells[k]
       const newState = n > 0 || state > 0 ? (state + 1) % 3 : state
@@ -17,10 +17,10 @@ export const waves = (x, y) => cells => {
 }
 
 // TODO: change gol to waves implementation!
-export const wavesHex = (x, y) => cells => {
+export const wavesHex = (x, y) => (cells) => {
   const { hex: neighborhood } = neighborIn(x, y)
   return Object.keys(cells)
-    .map(k => {
+    .map((k) => {
       const n = countCells(k)(cells, excited, neighborhood)
       const state = cells[k]
       const newState = n > 0 || state > 0 ? (state + 1) % 3 : state

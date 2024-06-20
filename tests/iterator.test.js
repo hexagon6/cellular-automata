@@ -1,8 +1,8 @@
 import test from 'ava'
 
-import { increase, mapIterator } from '../modules'
+import { increase, mapIterator } from '../src/lib/modules/index.js'
 
-test('iterator 0', t => {
+test('iterator 0', (t) => {
   const iterator = increase()
   t.is(typeof iterator, 'object')
   t.is(iterator.next().value, 0)
@@ -11,7 +11,7 @@ test('iterator 0', t => {
   t.is(iterator.next().value, 3)
 })
 
-test('iterator 1', t => {
+test('iterator 1', (t) => {
   const iterator = increase(2)
   t.is(typeof iterator, 'object')
   t.is(iterator.next().value, 0)
@@ -20,7 +20,7 @@ test('iterator 1', t => {
   t.is(iterator.next().value, 1)
 })
 
-test('iterator 2', t => {
+test('iterator 2', (t) => {
   const iterator = increase(2, 1)
   t.is(typeof iterator, 'object')
   t.is(iterator.next().value, 1)
@@ -29,7 +29,7 @@ test('iterator 2', t => {
   t.is(iterator.next().value, 0)
 })
 
-test('mapiterator', t => {
+test('mapiterator', (t) => {
   const iterator = mapIterator(['a', 'b'], 1)
   t.is(typeof iterator, 'object')
   t.is(iterator.next(), 'b')

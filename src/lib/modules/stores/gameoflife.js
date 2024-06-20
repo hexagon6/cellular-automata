@@ -1,17 +1,18 @@
-import { gol, golHex } from '../algorithms/gameoflife'
-import { mapIterator } from '../utils/mapiterator'
+import { gol, golHex } from '../algorithms/gameoflife.js'
+import { mapIterator } from '../utils/mapiterator.js'
 
-const fieldtypes = () => mapIterator(
-  [
-    {
-      fieldtype: 'rectangular',
-    },
-    {
-      fieldtype: 'hexagonal',
-    },
-  ],
-  0
-)
+const fieldtypes = () =>
+  mapIterator(
+    [
+      {
+        fieldtype: 'rectangular',
+      },
+      {
+        fieldtype: 'hexagonal',
+      },
+    ],
+    0
+  )
 
 const stati = [
   ['#ffffff', '#efefef'],

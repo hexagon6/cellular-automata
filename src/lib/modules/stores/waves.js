@@ -1,17 +1,18 @@
-import { waves, wavesHex } from '../algorithms/waves'
-import { mapIterator } from '../utils/mapiterator'
+import { waves, wavesHex } from '../algorithms/waves.js'
+import { mapIterator } from '../utils/mapiterator.js'
 
-const fieldtypes = () => mapIterator(
-  [
-    {
-      fieldtype: 'rectangular',
-    },
-    {
-      fieldtype: 'hexagonal',
-    },
-  ],
-  1
-)
+const fieldtypes = () =>
+  mapIterator(
+    [
+      {
+        fieldtype: 'rectangular',
+      },
+      {
+        fieldtype: 'hexagonal',
+      },
+    ],
+    1
+  )
 
 const stati = [
   ['#ffffff', '#dfdfdf', '#efefef'],

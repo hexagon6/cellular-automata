@@ -1,26 +1,26 @@
-import hexagonal from './shapes/hexagon'
-import rectangular from './shapes/rectangular'
+import hexagonal from './shapes/hexagon.js'
+import rectangular from './shapes/rectangular.js'
 
-import GameofLifeDefault from './stores/gameoflife'
-import WavesDefault from './stores/waves'
+import GameofLifeDefault from './stores/gameoflife.js'
+import WavesDefault from './stores/waves.js'
 
-import { getKeys, listToDict, dictToList } from './field/utils'
-import { neighborIn } from './field/rectangular/neighborhood'
+import { getKeys, listToDict, dictToList } from './field/utils.js'
+import { neighborIn } from './field/rectangular/neighborhood.js'
 
-import { genHSLAColor } from './colors/hsla'
+import { genHSLAColor } from './colors/hsla.js'
 
-import { increase, mapIterator } from './utils/mapiterator'
-import { timer } from './utils/timer'
+import { increase, mapIterator } from './utils/mapiterator.js'
+import { timer } from './utils/timer.js'
 
 const algorithm = () => 0
 const naive = (field, states) =>
-  field.map(cell =>
+  field.map((cell) =>
     Object.assign({}, cell, {
       v: (cell.v + 1) % states,
     })
   )
 
-const fieldGen = type => {
+const fieldGen = (type) => {
   const _default = 'rectangular'
   const generators = {
     hexagonal: hexagonal.field,
@@ -29,7 +29,7 @@ const fieldGen = type => {
   return type in generators ? generators[type] : generators[_default]
 }
 
-const countCells = cellKey => (cells, condition, neighborhood) => {
+const countCells = (cellKey) => (cells, condition, neighborhood) => {
   const [X, Y] = getKeys(cellKey)
   const NB = neighborhood ? neighborhood(X, Y) : false
   return Object.entries(cells)
